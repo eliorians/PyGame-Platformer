@@ -18,7 +18,7 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
     #Setup Player
-    player = Player(SCREEN_WIDTH, SCREEN_HEIGHT, GRAVITY)
+    player = Player(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     #Main Game Loop
     running = True
@@ -46,9 +46,10 @@ def main():
         #Passive Player things
         player.apply_gravity(GRAVITY)
         player.handle_collisions(SCREEN_WIDTH, SCREEN_HEIGHT)
+        player.update_animation(clock.tick(FPS) / 1000.0)
 
         #Screen Updates (redraw screen and player)
-        screen.fill(red)
+        screen.fill(black)
         player.draw(screen)
         pygame.display.update()
         clock.tick(FPS)
