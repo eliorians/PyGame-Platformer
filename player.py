@@ -59,3 +59,8 @@ class Player:
         #top edge
         if self.y > SCREEN_HEIGHT - self.frame_height:
             self.y = SCREEN_HEIGHT - self.frame_height
+    
+    # handling collisions made easy? 
+    # def handle_collisions(self, SCREEN_WIDTH, SCREEN_HEIGHT):
+    #     # Clamp the player's rect to stay within the screen boundaries
+    #     self.rect.clamp_ip(pygame.Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
