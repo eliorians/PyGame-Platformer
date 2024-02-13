@@ -6,3 +6,4 @@ How to run: python ./main.py
 Files:
 - main.py:   where the main game loop is ran
 - player.py: player class
+- lava.py:   lava class

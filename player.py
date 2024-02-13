@@ -9,7 +9,8 @@ player_jump_height = 5
 
 class Player:
 
-    def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
+    def __init__(self, screen_width, screen_height):
+            #sprite stuff
             self.sprite_sheet = pygame.image.load('./assets/Panda.png')
             self.frame_width = 48
             self.frame_height = 48
@@ -17,8 +18,9 @@ class Player:
             self.current_frame = 0
             self.animation_speed = .2
             self.animation_timer = 0
+            #starting position
             self.x = 0
-            self.y = SCREEN_HEIGHT - self.frame_height
+            self.y = screen_height - self.frame_height
 
     def draw(self, screen):
         frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
@@ -35,32 +37,34 @@ class Player:
           if (self.x > 0):
             self.x -= player_speed
 
-    def move_right(self, SCREEN_WIDTH, SCREEN_HEIGHT):
-         if(self.x < SCREEN_WIDTH - self.frame_width):
+    def move_right(self, screen_width, screen_height):
+         if(self.x < screen_width - self.frame_width):
               self.x += player_speed
 
     #TODO: make player only able to jump x times
     def jump(self):
         self.y -= player_jump_height
 
-    def apply_gravity(self, GRAVITY):
-         self.y += GRAVITY
+    def apply_gravity(self, gravity):
+         self.y += gravity
 
-    def handle_collisions(self, SCREEN_WIDTH, SCREEN_HEIGHT):
+    def screenCollisions(self, screen_width, screen_height):
         #left edge
         if self.x < 0:
             self.x = 0
         #right edge
-        if self.x + self.frame_width > SCREEN_WIDTH:
-            self.x = SCREEN_WIDTH - self.frame_width
+        if self.x + self.frame_width > screen_width:
+            self.x = screen_width - self.frame_width
         #bottom edge
         if self.y < 0:
             self.y = 0
         #top edge
-        if self.y > SCREEN_HEIGHT - self.frame_height:
-            self.y = SCREEN_HEIGHT - self.frame_height
+        if self.y > screen_height - self.frame_height:
+            self.y = screen_height - self.frame_height
+
+    def lavaCollisions(self, lava):
+        player_rect = pygame.Rect(self.x, self.y, self.frame_width, self.frame_height)
+        if player_rect.colliderect(lava.rect):
+            return True
+        return False
     
-    # handling collisions made easy? 
-    # def handle_collisions(self, SCREEN_WIDTH, SCREEN_HEIGHT):
-    #     # Clamp the player's rect to stay within the screen boundaries
-    #     self.rect.clamp_ip(pygame.Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
