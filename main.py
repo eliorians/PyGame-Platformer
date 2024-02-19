@@ -1,14 +1,13 @@
 
 #TODO
 # 1) fix jumps
-# 2) add surface objects
+# 2) fix surface objects
+
 # 3) add star objects
 # 4) stylize background/lava
 # 5) use levels to build objects instead of in main
 
 import pygame
-
-
 from assets.colors import *
 from player import Player
 from lava import Lava
@@ -19,7 +18,7 @@ from surface import Surface
 SCREEN_WIDTH=800
 SCREEN_HEIGHT=600
 FPS=60
-GRAVITY=5
+GRAVITY=3
 
 def game_lost():
     print('Game Over. You Lose.')
@@ -68,11 +67,12 @@ def main():
             player.move_right(SCREEN_WIDTH, SCREEN_HEIGHT)
             player_is_moving = True
         if keys[pygame.K_w]:
-            player.jump(current_time)
+            player.jump()
         
         #Passive Player things
+        #player.update(SCREEN_HEIGHT)
         player.apply_gravity(GRAVITY)
-        player.update_animation(clock.tick(FPS) / 1000.0)      
+        player.update_animation(clock.tick(FPS) / 1000.0)    
   
         #Player/Object collisions
         #screen
