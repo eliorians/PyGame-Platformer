@@ -28,11 +28,11 @@ class ParallaxBackground:
         self.layer5_x = 0.0
 
         # Set speeds for the layers
-        self.layer1_speed = 50
-        self.layer2_speed = 30
-        self.layer3_speed = 20
-        self.layer4_speed = 10
-        self.layer5_speed = 5
+        self.layer1_speed = 1
+        self.layer2_speed = 1
+        self.layer3_speed = 1
+        self.layer4_speed = 1
+        self.layer5_speed = 1
 
     def update(self, player_is_moving):
         if player_is_moving:
