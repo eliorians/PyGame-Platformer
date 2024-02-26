@@ -43,45 +43,43 @@ def main():
 
     #Main Game Loop
     running = True
-    player_is_moving = False
 
     while running:
-        
-        #Exit Game (close window or esc key)
+
+        #Game Controls
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
+                #Exit Game w/ Escape
                 if event.key == pygame.K_ESCAPE:
                     running = False
-
-        #Detect keys
-        keys = pygame.key.get_pressed()
-        
-        current_time = pygame.time.get_ticks()
-        #Player Controls
-        if keys[pygame.K_a]:
-            player.move_left()
-            player_is_moving = True
-        if keys[pygame.K_d]:
-            player.move_right(SCREEN_WIDTH, SCREEN_HEIGHT)
-            player_is_moving = True
-        if keys[pygame.K_w]:
-            player.jump()
-        
-        #Passive Player things
-        #player.update(SCREEN_HEIGHT)
-        player.apply_gravity(GRAVITY)
-        player.update_animation(clock.tick(FPS) / 1000.0)    
+                #Move Left
+                elif event.key == pygame.K_a:
+                    player.move_left()
+                #Move Right
+                elif event.key == pygame.K_d:
+                    player.move_right()
+                #Jump
+                elif event.key == pygame.K_w:
+                    player.jump()
+            elif event.type == pygame.KEYUP:
+                #stop moving when the A or D key is released
+                if event.key == pygame.K_a or event.key == pygame.K_d:
+                    player.stop_moving()
+                #stop jumping when the W key is released
+                if event.key == pygame.K_w:
+                    player.is_jumping = False
   
-        #Player/Object collisions
-        #screen
-        player.screenCollisions(SCREEN_WIDTH, SCREEN_HEIGHT)
+        #Player/Object Collisions
         #surfaces
         player.surfaceCollisions(surface)
         #lava
         if player.lavaCollisions(lava):
             game_lost()
+
+        #Update Player
+        player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)    
 
         #Background Stuff
         #background.draw(screen)
@@ -89,8 +87,8 @@ def main():
         screen.fill(black)
 
         #Screen Updates (order determines layer)
-        surface.draw(screen)
         lava.draw(screen)
+        surface.draw(screen)
         player.draw(screen)
         pygame.display.update()
         clock.tick(FPS)
