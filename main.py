@@ -15,10 +15,10 @@ from background import ParallaxBackground
 from surface import Surface
 
 #Game Settings
+FPS=60
 SCREEN_WIDTH=800
 SCREEN_HEIGHT=600
-FPS=60
-GRAVITY=3
+GRAVITY=1
 
 def game_lost():
     print('Game Over. You Lose.')

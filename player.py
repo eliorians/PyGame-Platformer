@@ -6,7 +6,7 @@ from assets.colors import *
 
 #Player Stats
 player_speed = 5
-player_jump = 25
+player_jump = 10
 
 class Player:
 
@@ -25,6 +25,9 @@ class Player:
             #velocity
             self.velocity_x = 0
             self.velocity_y = 0
+            #jumping
+            self.jump_cooldown = 500  # 500 milliseconds
+            self.last_jump_time = 0
             self.is_jumping = False
 
     def update(self, gravity, dt, screen_width, screen_height):
@@ -35,8 +38,6 @@ class Player:
         self.screenCollisions(screen_width, screen_height)
     
     def move_left(self):
-        #   if (self.x > 0):
-        #     self.x -= player_speed
         self.velocity_x = -player_speed
 
     def move_right(self):
@@ -50,7 +51,7 @@ class Player:
     def apply_gravity(self, gravity):
         # apply gravity if not jumping
         if not self.is_jumping:
-            self.velocity_y += 1
+            self.velocity_y += gravity
 
     def stop_moving(self):
         self.velocity_x = 0
