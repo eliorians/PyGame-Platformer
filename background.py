@@ -1,44 +1,21 @@
 import pygame
-import sys
 
-class ParallaxBackground:
-    def __init__(self, screen, images, speeds):
-        """
-        Initialize the parallax background.
-
-        Parameters:
-        - screen: Pygame screen surface
-        - images: List of image paths for each layer (ordered from back to front)
-        - speeds: List of scrolling speeds for each layer (ordered from back to front)
-        """
+class Background:
+    def __init__(self, screen):
         self.screen = screen
-        self.images = [pygame.image.load(image).convert() for image in images]
-        self.speeds = speeds
-        self.num_layers = len(images)
-        self.width, self.height = screen.get_size()
-        self.scroll_x = [0] * self.num_layers
+        self.scroll = 0
+        self.bg_images = []
+        
+        for i in range(1, 6):
+            bg_image = pygame.image.load(f"assets/Jungle Asset Pack/parallax background/plx-{i}.png").convert_alpha()
+            scaled_image = pygame.transform.scale(bg_image, (screen.get_width(), screen.get_height()))
+            self.bg_images.append(scaled_image)
+        
+        self.bg_width = self.bg_images[0].get_width()
 
-    def update(self):
-        """
-        Update the scroll positions based on the speeds.
-        """
-        for i in range(self.num_layers):
-            self.scroll_x[i] = (self.scroll_x[i] + self.speeds[i]) % self.width
-
-    def draw(self):
-        """
-        Draw the parallax background on the screen.
-        """
-        for i in range(self.num_layers):
-            self.screen.blit(self.images[i], (self.scroll_x[i] - self.width, 0))
-            self.screen.blit(self.images[i], (self.scroll_x[i], 0))
-
-    def scroll(self, delta_x):
-        """
-        Manually scroll the background by a specified amount.
-
-        Parameters:
-        - delta_x: Amount to scroll in the x-direction
-        """
-        for i in range(self.num_layers):
-            self.scroll_x[i] = (self.scroll_x[i] + delta_x) % self.width
+    def draw_bg(self):
+        for x in range(5):
+            speed = 1
+            for i in self.bg_images:
+                self.screen.blit(i, ((x * self.bg_width) - self.scroll * speed, 0))
+                speed += 0.2

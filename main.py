@@ -1,19 +1,21 @@
 
-#todo stylize stuff
+#todo fix surfaces (character seems to float on it)
+#todo stylize lava and surfaces
 #todo use levels to build objects instead of in main
 
 import pygame
 from assets.colors import *
 from player import Player
 from lava import Lava
-from background import ParallaxBackground
 from surface import Surface
 from star import Star
+from background import Background
 
 #Game Settings
 FPS=60
 SCREEN_WIDTH=800
 SCREEN_HEIGHT=600
+GROUND_HEIGHT=15
 GRAVITY=1
 
 def game_lost():
@@ -33,20 +35,13 @@ def main():
     pygame.display.set_caption("Panda Platformer")
     
     #Create Objects
-    player = Player(SCREEN_WIDTH, SCREEN_HEIGHT)
-    surface = Surface(x= 300, y=450, height=30, width=300)
-    lava = Lava(x=400, y=600, height=50, width=50)
+    player = Player(SCREEN_WIDTH, SCREEN_HEIGHT, GROUND_HEIGHT)
+    surface = Surface(x=0, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=SCREEN_WIDTH)
+    lava = Lava(x=300, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=250)
     star = Star(x=550, y=600, height= 10, width=10)
     
     #Background stuff
-    bg_images = []
-    for i in range(1, 6):
-        bg_image = pygame.image.load(f"assets/Jungle Asset Pack/parallax background/plx-{i}.png").convert_alpha()
-        bg_images.append(bg_image)
-
-    def draw_bg():
-        for i in bg_images:
-            screen.blit(i, (0, 0))
+    background = Background(screen)
     
     #Main Game Loop
     gameRunning = True
@@ -89,12 +84,12 @@ def main():
         player.surfaceCollisions(surface)
         
         #Background Stuff
-        #screen.fill(black)
-        draw_bg()
+        screen.fill(black)
+        background.draw_bg()
 
         #Screen Updates (order determines layer)
-        lava.draw(screen)
         surface.draw(screen)
+        lava.draw(screen)
         star.draw(screen)
         player.draw(screen)
         pygame.display.update()

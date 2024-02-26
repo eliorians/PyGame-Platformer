@@ -1,6 +1,5 @@
 
 import pygame
-import time
 
 from assets.colors import *
 
@@ -10,7 +9,7 @@ player_jump = 20
 
 class Player:
 
-    def __init__(self, screen_width, screen_height):
+    def __init__(self, screen_width, screen_height, ground_height):
             #sprite stuff
             self.sprite_sheet = pygame.image.load('./assets/Panda.png')
             self.frame_width = 48
@@ -20,7 +19,7 @@ class Player:
             self.animation_speed = .2
             self.animation_timer = 0
             #position
-            self.rect = pygame.Rect(0, screen_height - self.frame_height, self.frame_width, self.frame_height)
+            self.rect = pygame.Rect(ground_height, screen_height - self.frame_height, self.frame_width, self.frame_height)
             #velocity
             self.velocity_x = 0
             self.velocity_y = 0
@@ -82,10 +81,11 @@ class Player:
     
     def surfaceCollisions(self, surface):
         if self.rect.colliderect(surface.rect):
-            if self.velocity_y > 0:  # Player is falling
+            if self.velocity_y > 0:
                     self.rect.bottom = surface.rect.top
                     self.velocity_y = 0
-            elif self.velocity_y < 0:  # Player is jumping
+                    self.is_jumping = False
+            elif self.velocity_y < 0:
                     self.rect.top = surface.rect.bottom
                     self.velocity_y = 0
 
