@@ -81,12 +81,14 @@ class Player:
     
     def surfaceCollisions(self, surface):
         if self.rect.colliderect(surface.rect):
+            #jumping on top of the surface
             if self.velocity_y > 0:
-                    self.rect.bottom = surface.rect.top
+                    #self.rect.bottom = surface.rect.top
                     self.velocity_y = 0
                     self.is_jumping = False
+            #jumping into the bottom of the surface
             elif self.velocity_y < 0:
-                    self.rect.top = surface.rect.bottom
+                    #self.rect.top = surface.rect.bottom
                     self.velocity_y = 0
 
     def draw(self, screen):
