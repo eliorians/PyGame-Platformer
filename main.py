@@ -84,7 +84,7 @@ def main():
         player.surfaceCollisions(surface)
         
         #Background Stuff
-        screen.fill(black)
+        #screen.fill(black)
         background.draw_bg()
 
         #Screen Updates (order determines layer)
@@ -95,7 +95,7 @@ def main():
         pygame.display.update()
         clock.tick(FPS)
         
-    pygame.quit()
+    pygame.quit() 
 
 if __name__ == '__main__':
     main()
