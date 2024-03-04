@@ -1,9 +1,8 @@
 import pygame
-
+import player
 class Background:
     def __init__(self, screen):
         self.screen = screen
-        self.scroll = 0
         self.bg_images = []
         
         for i in range(1, 6):
@@ -13,9 +12,9 @@ class Background:
         
         self.bg_width = self.bg_images[0].get_width()
 
-    def draw_bg(self):
+    def draw_bg(self, player):
         for x in range(5):
-            speed = 1
+            speed = 0.3
             for i in self.bg_images:
-                self.screen.blit(i, ((x * self.bg_width) - self.scroll * speed, 0))
-                speed += 0.2
+                self.screen.blit(i, ((x * self.bg_width) - player.scroll * speed, 0))
+                speed += 0.1

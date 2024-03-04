@@ -1,7 +1,10 @@
 
 #todo fix surfaces (character seems to float on it)
-#todo stylize lava and surfaces
 #todo use levels to build objects instead of in main
+
+
+#todo stylize lava and surfaces
+#todo make player flip when changing directions
 
 import pygame
 from assets.colors import *
@@ -15,7 +18,7 @@ from background import Background
 FPS=60
 SCREEN_WIDTH=800
 SCREEN_HEIGHT=600
-GROUND_HEIGHT=15
+GROUND_HEIGHT=30
 GRAVITY=1
 
 def game_lost():
@@ -35,10 +38,11 @@ def main():
     pygame.display.set_caption("Panda Platformer")
     
     #Create Objects
-    player = Player(SCREEN_WIDTH, SCREEN_HEIGHT, GROUND_HEIGHT)
-    surface = Surface(x=0, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=SCREEN_WIDTH)
+    player = Player(SCREEN_WIDTH, SCREEN_HEIGHT, x=0, y=0)
+    surface1 = Surface(x=0, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=SCREEN_WIDTH)
+    surface2 = Surface(x=250, y=500, height=GROUND_HEIGHT, width=250)
     lava = Lava(x=300, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=250)
-    star = Star(x=550, y=600, height= 10, width=10)
+    star = Star(x=750, y=550, height= 10, width=10)
     
     #Background stuff
     background = Background(screen)
@@ -81,14 +85,16 @@ def main():
         if player.starCollisions(star):
             game_win()
         #surfaces
-        player.surfaceCollisions(surface)
+        player.surfaceCollisions(surface1)
+        player.surfaceCollisions(surface2)
         
         #Background Stuff
         #screen.fill(black)
-        background.draw_bg()
+        background.draw_bg(player)
 
         #Screen Updates (order determines layer)
-        surface.draw(screen)
+        surface1.draw(screen)
+        surface2.draw(screen)
         lava.draw(screen)
         star.draw(screen)
         player.draw(screen)
