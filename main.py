@@ -1,28 +1,47 @@
 
-#todo fix surfaces (character seems to float on it)
-#todo use levels to build objects instead of in main
+"""
+TODO
 
+- reposition level1
+- make player larger?
+- change to the next level on game win if there are more levels
+- create level2
+- make level1 winable
 
-#todo stylize lava and surfaces
-#todo make player flip when changing directions
+- stylize lava
+- stylize star
+- stylize surfaces
+
+- make text appear for game over
+- add text before the level starts (LVL 1)
+- make player flip when changing directions
+
+"""
 
 import pygame
 from assets.colors import *
-from player import Player
-from lava import Lava
-from surface import Surface
-from star import Star
 from background import Background
+from level import *
+from player import Player
+import pygame.mixer
 
 #Game Settings
 FPS=60
-SCREEN_WIDTH=800
-SCREEN_HEIGHT=600
-GROUND_HEIGHT=30
 GRAVITY=1
+SCREEN_WIDTH=1920
+SCREEN_HEIGHT=1080
 
-def game_lost():
-    print('Game Over. You Lose.')
+def game_lost(screen):
+    #load text
+    text_font = pygame.font.SysFont("Pixel Craft", 1000)
+    game_over_text = text_font.render('Game Over. You Lose.', True, (0, 0, 0))
+    screen.blit(game_over_text, (100, 400))
+    #load sound
+    pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
+    pygame.mixer.music.play()
+    pygame.display.update()
+    pygame.time.delay(3000)
+    #quit game
     pygame.quit()
 
 def game_win():
@@ -31,21 +50,27 @@ def game_win():
 
 def main():
     pygame.init()
+    pygame.mixer.init()
 
     #Setup Game Window
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Panda Platformer")
     
-    #Create Objects
+    #Player Object
     player = Player(SCREEN_WIDTH, SCREEN_HEIGHT, x=0, y=0)
-    surface1 = Surface(x=0, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=SCREEN_WIDTH)
-    surface2 = Surface(x=250, y=500, height=GROUND_HEIGHT, width=250)
-    lava = Lava(x=300, y=SCREEN_HEIGHT-GROUND_HEIGHT, height=GROUND_HEIGHT, width=250)
-    star = Star(x=750, y=550, height= 10, width=10)
+
+    #Level Object
+    levels = Levels()
+    levels.current_level = 0
+    levels.add_level(level1)
     
-    #Background stuff
+    #Background Image
     background = Background(screen)
+
+    #Background Music
+    pygame.mixer.music.load("assets/sounds/sleep_it_off.wav")
+    pygame.mixer.music.play(-1)
     
     #Main Game Loop
     gameRunning = True
@@ -75,28 +100,21 @@ def main():
                     player.stop_moving()
   
         #Update Player
-        player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)    
+        player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)   
 
         #Player/Object Collisions
-        #lava
-        if player.lavaCollisions(lava):
-            game_lost()
-        #star
-        if player.starCollisions(star):
-            game_win()
-        #surfaces
-        player.surfaceCollisions(surface1)
-        player.surfaceCollisions(surface2)
+        for lava in levels.current_level.lava:
+            if player.lavaCollisions(lava):
+                game_lost(screen)
+        for star in levels.current_level.stars:
+            if player.starCollisions(star):
+                game_win()
+        for surface in levels.current_level.surfaces:
+            player.surfaceCollisions(surface)
         
-        #Background Stuff
-        #screen.fill(black)
-        background.draw_bg(player)
-
         #Screen Updates (order determines layer)
-        surface1.draw(screen)
-        surface2.draw(screen)
-        lava.draw(screen)
-        star.draw(screen)
+        background.draw_bg(player)
+        levels.current_level.draw(screen)
         player.draw(screen)
         pygame.display.update()
         clock.tick(FPS)
