@@ -3,22 +3,24 @@
 TODO
 
 ESSENTIALS
-- flex player size
-- finalize level1
+- flex player size (also flex speed/jump...)
+- finalize level 1
 - setup branches to work on diff levels
+
+LEVELS
 - create level2
 - level1 flow into level2
-
-STYLES
-- stylize lava
-- stylize star
-- stylize surfaces
 
 FEATURES
 - lives
 - add text before the level starts (LVL 1)
 - make player flip when changing directions
 - menu
+
+STYLING
+- stylize lava
+- stylize star
+- stylize surfaces
 
 """
 
