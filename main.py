@@ -35,8 +35,8 @@ if platform.system() == 'Windows':
     SCREEN_WIDTH = user32.GetSystemMetrics(0)
     SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 elif platform.system() == 'Darwin':
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 600
+    SCREEN_WIDTH = 2560
+    SCREEN_HEIGHT = 1664
 else:
     SCREEN_WIDTH = 800
     SCREEN_HEIGHT = 600
