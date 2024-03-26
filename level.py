@@ -1,15 +1,21 @@
 
+import platform
 import pygame
 from assets.colors import *
 
 from surface import Surface
 from lava import Lava
 from star import Star
-import ctypes
 
-user32 = ctypes.windll.user32
-SCREEN_WIDTH=user32.GetSystemMetrics(0)
-SCREEN_HEIGHT=user32.GetSystemMetrics(1)
+if platform.system() == 'Windows':
+    import ctypes
+    user32 = ctypes.windll.user32
+    SCREEN_WIDTH = user32.GetSystemMetrics(0)
+    SCREEN_HEIGHT = user32.GetSystemMetrics(1)
+elif platform.system() == 'Darwin':
+    from AppKit import NSScreen
+    SCREEN_WIDTH = int(NSScreen.mainScreen().frame().size.width)
+    SCREEN_HEIGHT = int(NSScreen.mainScreen().frame().size.height)
 
 class Level:
 
