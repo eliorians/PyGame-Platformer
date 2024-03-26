@@ -6,18 +6,9 @@ from assets.colors import *
 from surface import Surface
 from lava import Lava
 from star import Star
+import pyautogui
 
-if platform.system() == 'Windows':
-    import ctypes
-    user32 = ctypes.windll.user32
-    SCREEN_WIDTH = user32.GetSystemMetrics(0)
-    SCREEN_HEIGHT = user32.GetSystemMetrics(1)
-elif platform.system() == 'Darwin':
-    SCREEN_WIDTH = 2560
-    SCREEN_HEIGHT = 1664
-else:
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 600
+SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size()
 
 class Level:
 

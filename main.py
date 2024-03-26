@@ -29,17 +29,8 @@ import pygame.mixer
 #Game Settings
 FPS=60
 GRAVITY=1
-if platform.system() == 'Windows':
-    import ctypes
-    user32 = ctypes.windll.user32
-    SCREEN_WIDTH = user32.GetSystemMetrics(0)
-    SCREEN_HEIGHT = user32.GetSystemMetrics(1)
-elif platform.system() == 'Darwin':
-    SCREEN_WIDTH = 2560
-    SCREEN_HEIGHT = 1664
-else:
-    SCREEN_WIDTH = 800
-    SCREEN_HEIGHT = 600
+
+SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size()
 
 def calculate_text_size(screen_width, screen_height):
     # Calculate text size based on screen dimensions
@@ -67,7 +58,7 @@ def game_lost(screen):
     
     # Blit the text to the screen at the calculated center coordinates
     screen.blit(game_over_text, text_x, text_y )
-    
+
     #load sound
     pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
     pygame.mixer.music.play()
