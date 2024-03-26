@@ -24,6 +24,7 @@ from background import Background
 from level import *
 from player import Player
 import pygame.mixer
+import pyautogui
 
 #Game Settings
 FPS=60
@@ -49,7 +50,6 @@ def game_lost(screen):
     
     # Blit the text to the screen at the calculated center coordinates
     screen.blit(game_over_text, (text_x, text_y))
-
 
     #load sound
     pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
