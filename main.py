@@ -4,6 +4,8 @@ TODO
 
 ESSENTIALS
 - flex player size
+- finalize level1
+- setup branches to work on diff levels
 - create level2
 - level1 flow into level2
 
@@ -16,6 +18,7 @@ FEATURES
 - lives
 - add text before the level starts (LVL 1)
 - make player flip when changing directions
+- menu
 
 """
 

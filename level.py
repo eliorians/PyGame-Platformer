@@ -44,13 +44,15 @@ level1 = Level(
     surfaces=[
         #ground surface
         Surface(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.90, height=SCREEN_HEIGHT),
-        #floating platfrom
+        #floating platfrom in center
         Surface(x=SCREEN_WIDTH*.4, width=SCREEN_WIDTH*.2, y=SCREEN_HEIGHT*.7, height=SCREEN_HEIGHT*.05),
     ],
     lava=[
+        #lava pit in center
         Lava(x=SCREEN_WIDTH*.4, width=SCREEN_WIDTH*.2, y=SCREEN_HEIGHT*.9, height=SCREEN_HEIGHT),
     ],
     stars=[
+        #star on the right side
         Star(x=SCREEN_WIDTH*0.75, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.8, height=SCREEN_HEIGHT*.05,),
     ],
 )
