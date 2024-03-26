@@ -33,9 +33,23 @@ SCREEN_HEIGHT=1080
 
 def game_lost(screen):
     #load text
-    text_font = pygame.font.SysFont("Pixel Craft", 1000)
+     # Load text
+    text_font = pygame.font.SysFont("Pixel Craft", 150)
     game_over_text = text_font.render('Game Over. You Lose.', True, (0, 0, 0))
-    screen.blit(game_over_text, (100, 400))
+    
+    # Get the dimensions of the screen
+    screen_width = screen.get_width()
+    screen_height = screen.get_height()
+    
+    # Calculate the center coordinates for the text
+    text_x = (screen_width - game_over_text.get_width()) / 2
+    text_y = (screen_height - game_over_text.get_height()) / 2
+    
+    # Blit the text to the screen at the calculated center coordinates
+    screen.blit(game_over_text, (text_x, text_y))
+
+
+
     #load sound
     pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
     pygame.mixer.music.play()

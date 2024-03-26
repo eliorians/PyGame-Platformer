@@ -42,8 +42,8 @@ class Levels:
 
 level1 = Level(
     surfaces=[
-        Surface(x=0, y=SCREEN_HEIGHT-30, height=30, width=SCREEN_WIDTH),
-        Surface(x=250, y=500, height=30, width=250),
+        Surface(x=0, y=SCREEN_HEIGHT-30, height=30, width=SCREEN_WIDTH),    #ground
+        Surface(x=250, y=500, height=30, width=250),                        #floating platform
     ],
     lava=[
         Lava(x=300, y=SCREEN_HEIGHT-30, height=30, width=250),
