@@ -2,8 +2,7 @@
 """
 TODO
 
-- reposition level1
-- make player larger?
+- flex playe
 - change to the next level on game win if there are more levels
 - create level2
 - make level1 winable
@@ -32,32 +31,25 @@ GRAVITY=1
 
 SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size()
 
-def calculate_text_size(screen_width, screen_height):
-    # Calculate text size based on screen dimensions
-    base_text_size = min(screen_width, screen_height) // 10  # Adjust this multiplier as needed
-    return max(base_text_size, 30)  # Ensure text size is not too small
-
 def game_lost(screen):
-    # Get the dimensions of the screen
-    screen_width = screen.get_width()
-    screen_height = screen.get_height()
-
-    # Calculate text size based on screen dimensions
-    text_size = calculate_text_size(screen_width, screen_height)
-
+    # Fill the screen with white color
+    screen.fill((0, 0, 0))
+    
+    # Load text with variable size
     text_font = pygame.font.SysFont("Pixel Craft", 150)
-    game_over_text = text_font.render ('Game Over. You Lose.', True, 0, 0, 0 )
+    game_over_text = text_font.render('Game Over. You Lose.', True, (255, 255, 255))
     
     # Get the dimensions of the screen
     screen_width = screen.get_width()
     screen_height = screen.get_height()
     
     # Calculate the center coordinates for the text
-    text_x = (screen_width - game_over_text.get_width) / 2
-    text_y = (screen_height - game_over_text.get_height) / 2
+    text_x = (screen_width - game_over_text.get_width()) / 2
+    text_y = (screen_height - game_over_text.get_height()) / 2
     
     # Blit the text to the screen at the calculated center coordinates
-    screen.blit(game_over_text, text_x, text_y )
+    screen.blit(game_over_text, (text_x, text_y))
+
 
     #load sound
     pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
@@ -88,7 +80,7 @@ def main():
     levels.current_level = 0
     levels.add_level(level1)
     
-    #Background Image Takes image path, and level num
+    #Background Image (takes image path, and level num)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
 
     #Background Music
