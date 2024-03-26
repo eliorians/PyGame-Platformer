@@ -2,17 +2,18 @@
 """
 TODO
 
-- flex playe
-- change to the next level on game win if there are more levels
+ESSENTIALS
+- flex player size
 - create level2
-- make level1 winable
-- Make level 2 occur once star is grabbed and then add new bkg
+- level1 flow into level2
 
+STYLES
 - stylize lava
 - stylize star
 - stylize surfaces
 
-- make text appear for game over
+FEATURES
+- lives
 - add text before the level starts (LVL 1)
 - make player flip when changing directions
 

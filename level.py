@@ -1,6 +1,3 @@
-
-import platform
-import pygame
 from assets.colors import *
 
 from surface import Surface
