@@ -1,12 +1,15 @@
 import pygame
 import player
 class Background:
-    def __init__(self, screen):
+    def __init__(self, screen, image_path, level):
         self.screen = screen
         self.bg_images = []
-        
-        for i in range(1, 6):
-            bg_image = pygame.image.load(f"assets/Jungle Asset Pack/parallax background/plx-{i}.png").convert_alpha()
+        num_backgrounds = 0
+        if(level == 0):
+            num_backgrounds = 6
+
+        for i in range(1, num_backgrounds):
+            bg_image = pygame.image.load(f"{image_path}/plx-{i}.png").convert_alpha()
             scaled_image = pygame.transform.scale(bg_image, (screen.get_width(), screen.get_height()))
             self.bg_images.append(scaled_image)
         

@@ -5,9 +5,11 @@ from assets.colors import *
 from surface import Surface
 from lava import Lava
 from star import Star
+import ctypes
 
-SCREEN_WIDTH=1920
-SCREEN_HEIGHT=1080
+user32 = ctypes.windll.user32
+SCREEN_WIDTH=user32.GetSystemMetrics(0)
+SCREEN_HEIGHT=user32.GetSystemMetrics(1)
 
 class Level:
 
@@ -40,10 +42,12 @@ class Levels:
     def current_level(self, index):
         self.current_level_index = index
 
+#Level One
+
 level1 = Level(
     surfaces=[
-        Surface(x=0, y=SCREEN_HEIGHT-30, height=30, width=SCREEN_WIDTH),    #ground
-        Surface(x=250, y=500, height=30, width=250),                        #floating platform
+        Surface(x=0, y=SCREEN_HEIGHT*.90, height=SCREEN_HEIGHT, width=SCREEN_WIDTH),    #ground
+        Surface(x=SCREEN_WIDTH*.25, y=SCREEN_HEIGHT*.7, height=SCREEN_HEIGHT*.3, width=SCREEN_WIDTH*.25), #floating platform
     ],
     lava=[
         Lava(x=300, y=SCREEN_HEIGHT-30, height=30, width=250),
