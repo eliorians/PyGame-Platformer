@@ -25,12 +25,13 @@ from background import Background
 from level import *
 from player import Player
 import pygame.mixer
+user32 = ctypes.windll.user32
 
 #Game Settings
 FPS=60
 GRAVITY=1
-SCREEN_WIDTH=1920
-SCREEN_HEIGHT=1080
+SCREEN_WIDTH=user32.GetSystemMetrics(0)
+SCREEN_HEIGHT=user32.GetSystemMetrics(1)
 
 def calculate_text_size(screen_width, screen_height):
     # Calculate text size based on screen dimensions
