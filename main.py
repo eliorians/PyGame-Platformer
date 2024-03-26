@@ -35,19 +35,25 @@ if platform.system() == 'Windows':
     SCREEN_WIDTH = user32.GetSystemMetrics(0)
     SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 elif platform.system() == 'Darwin':
-    from AppKit import NSScreen
-    SCREEN_WIDTH = int(NSScreen.mainScreen().frame().size.width)
-    SCREEN_HEIGHT = int(NSScreen.mainScreen().frame().size.height)
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 600
+else:
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 600
 
 def calculate_text_size(screen_width, screen_height):
     # Calculate text size based on screen dimensions
     base_text_size = min(screen_width, screen_height) // 10  # Adjust this multiplier as needed
     return max(base_text_size, 30)  # Ensure text size is not too small
 
-
 def game_lost(screen):
-    #load text
-     # Load text
+    # Get the dimensions of the screen
+    screen_width = screen.get_width()
+    screen_height = screen.get_height()
+
+    # Calculate text size based on screen dimensions
+    text_size = calculate_text_size(screen_width, screen_height)
+
     text_font = pygame.font.SysFont("Pixel Craft", 150)
     game_over_text = text_font.render ('Game Over. You Lose.', True, 0, 0, 0 )
     
@@ -61,9 +67,7 @@ def game_lost(screen):
     
     # Blit the text to the screen at the calculated center coordinates
     screen.blit(game_over_text, text_x, text_y )
-
-
-
+    
     #load sound
     pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
     pygame.mixer.music.play()

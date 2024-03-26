@@ -13,9 +13,11 @@ if platform.system() == 'Windows':
     SCREEN_WIDTH = user32.GetSystemMetrics(0)
     SCREEN_HEIGHT = user32.GetSystemMetrics(1)
 elif platform.system() == 'Darwin':
-    from AppKit import NSScreen
-    SCREEN_WIDTH = int(NSScreen.mainScreen().frame().size.width)
-    SCREEN_HEIGHT = int(NSScreen.mainScreen().frame().size.height)
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 600
+else:
+    SCREEN_WIDTH = 800
+    SCREEN_HEIGHT = 600
 
 class Level:
 
@@ -53,14 +55,14 @@ class Levels:
 level1 = Level(
     surfaces=[
         #ground surface
-        Surface(x=0, y=SCREEN_HEIGHT*.90, height=SCREEN_HEIGHT, width=SCREEN_WIDTH),
+        Surface(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.90, height=SCREEN_HEIGHT),
         #floating platfrom
-        Surface(x=SCREEN_WIDTH*.4, y=SCREEN_HEIGHT*.7, height=SCREEN_HEIGHT*.3, width=SCREEN_WIDTH*.2),
+        Surface(x=SCREEN_WIDTH*.4, width=SCREEN_WIDTH*.2, y=SCREEN_HEIGHT*.7, height=SCREEN_HEIGHT*.05),
     ],
     lava=[
-        Lava(x=300, y=SCREEN_HEIGHT-30, height=30, width=250),
+        Lava(x=SCREEN_WIDTH*.4, width=SCREEN_WIDTH*.2, y=SCREEN_HEIGHT*.9, height=SCREEN_HEIGHT),
     ],
     stars=[
-        Star(x=750, y=550, height=10, width=10),
+        Star(x=SCREEN_WIDTH*0.75, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.8, height=SCREEN_HEIGHT*.05,),
     ],
 )
