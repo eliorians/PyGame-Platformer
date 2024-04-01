@@ -117,3 +117,7 @@ class Player:
             self.scroll -= 5
         elif self.velocity_x > 0 and self.scroll < 3000:
             self.scroll += 5
+
+    def reset_position(self):
+        self.hitbox.x = 0
+        self.hitbox.y = 0

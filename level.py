@@ -1,3 +1,4 @@
+import pygame
 from assets.colors import *
 
 from surface import Surface
@@ -31,12 +32,27 @@ class Levels:
         self.level_list.append(level)
 
     @property
-    def current_level(self):
-        return self.level_list[self.current_level_index]
+    def current_level_index(self):
+        return self._current_level_index
     
-    @current_level.setter
-    def current_level(self, index):
-        self.current_level_index = index
+    @current_level_index.setter
+    def current_level_index(self, index):
+        self._current_level_index = index
+
+    @property
+    def current_level(self):
+        return self.level_list[self._current_level_index]
+
+    def level_win(self, player):
+        #check if there are more levels available
+        if self.current_level_index + 1 < len(self.level_list):
+            #increment the current level index
+            self.current_level_index += 1
+            #move player back to start
+            player.reset_position()
+        else:
+            print('Congratulations! You have completed all levels!')
+            pygame.quit()
 
 #Level One
 level1 = Level(
@@ -55,4 +71,27 @@ level1 = Level(
         #star on the right side
         Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05,),
     ],
+)
+level2 = Level(
+    surfaces=[
+        # ground surface
+        Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
+        # floating platform on the left
+        Surface(x= 5 , width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.7, height=SCREEN_HEIGHT * 0.05),
+
+        # floating platform on the right
+        Surface(x=SCREEN_WIDTH * 0.6, width=SCREEN_WIDTH * 0.3, y=SCREEN_HEIGHT * 0.6, height=SCREEN_HEIGHT * 0.05),
+    ],
+    lava=[
+        # lava pit at the beginning
+        Lava(x=0, width=SCREEN_WIDTH * 0.2, y=SCREEN_HEIGHT * 0.95, height=SCREEN_HEIGHT),
+        # lava pit on the left
+        Lava(x=0, width=SCREEN_WIDTH * 1, y=SCREEN_HEIGHT * 0.95, height=SCREEN_HEIGHT),
+        # lava pit on the right
+        Lava(x=SCREEN_WIDTH * 0.9, width=SCREEN_WIDTH * 0.1, y=SCREEN_HEIGHT * 0.95, height=SCREEN_HEIGHT),
+    ],
+    stars=[
+        # star at the end of the right floating platform
+        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05),
+]
 )

@@ -103,10 +103,6 @@ def game_lost(screen):
 
 
 
-def level_win():
-    print('Game Over. You Win!')
-    pygame.quit()
-
 def main():
     pygame.init()
     pygame.mixer.init()
@@ -121,8 +117,8 @@ def main():
 
     #Level Object
     levels = Levels()
-    levels.current_level = 0
     levels.add_level(level1)
+    levels.add_level(level2)
     
     #Background Image (takes image path, and level num)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
@@ -167,7 +163,7 @@ def main():
                 game_lost(screen)
         for star in levels.current_level.stars:
             if player.starCollisions(star):
-                level_win()
+                levels.level_win(player)
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
         
