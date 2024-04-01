@@ -62,16 +62,6 @@ def game_lost(screen):
     #quit game
     pygame.quit()
 
-def level_win(levels):
-    # Check if there are more levels available
-    if levels.current_level_index + 1 < len(levels.level_list):
-        # Increment the current level index
-        levels.current_level_index += 1
-        print(f'Level {levels.current_level_index + 1}')
-    else:
-        print('Congratulations! You have completed all levels!')
-        pygame.quit()
-
 def main():
     pygame.init()
     pygame.mixer.init()
@@ -86,9 +76,8 @@ def main():
 
     #Level Object
     levels = Levels()
-    levels.current_level = 0
     levels.add_level(level1)
-    #levels.add_level(level2)
+    levels.add_level(level2)
     
     #Background Image (takes image path, and level num)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
@@ -133,7 +122,7 @@ def main():
                 game_lost(screen)
         for star in levels.current_level.stars:
             if player.starCollisions(star):
-                level_win(levels)
+                levels.level_win(player)
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
         
