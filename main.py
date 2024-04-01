@@ -27,7 +27,6 @@ from background import Background
 from level import *
 from player import Player
 import pygame.mixer
-import pyautogui
 
 #Game Settings
 FPS=60
