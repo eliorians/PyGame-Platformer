@@ -2,22 +2,17 @@
 """
 TODO
 
-LEVELS
-- correct game over screen
-- create level2
-- level1 flow into level2
-
-FEATURES
-- lives
+- menu (start game, options, quit)
 - add text before the level starts (LVL 1)
-- make player flip when changing directions
-- menu (option to change screen size - 2x screen size = 2x player size/speed/jump)
 
-STYLING
 - stylize lava
 - stylize star
 - stylize surfaces
-- Background for different levels
+
+- lives
+- make player flip when changing directions
+
+- more levels and level variety!
 
 """
 
