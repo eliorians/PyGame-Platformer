@@ -26,6 +26,7 @@ from assets.colors import *
 from background import Background
 from level import *
 from player import Player
+from menu import *
 import pygame.mixer
 
 #Game Settings
@@ -90,6 +91,8 @@ def main():
     gameRunning = True
 
     while gameRunning:
+        mainMenu = Menu(screen)
+        mainMenu.draw(screen)
 
         #Game Controls
         for event in pygame.event.get():
