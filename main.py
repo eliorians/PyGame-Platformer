@@ -35,24 +35,55 @@ GRAVITY=1
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+def reset_level():
+    # You should reset any variables or parameters related to the level's state here
+    # For example:
+    # reset character position
+    character_position = (100, 100)
+    # reset other level-specific variables
+    
+    # return the reset level state
+    return character_position  # You can return other variables if needed
+
+
 def game_lost(screen):
     # Fill the screen with white color
+
+    level_state = reset_level()
+    
+
     screen.fill((0, 0, 0))
     
-    # Load text with variable size
-    text_font = pygame.font.SysFont("Pixel Craft", 100)
+    # Load text with variable size for the first page
+    text_font = pygame.font.SysFont("Pixel Craft", 50)
     game_over_text = text_font.render('Game Over. You Lose.', True, (255, 255, 255))
+    
+    # Load text with variable size for the second page
+    text_font = pygame.font.SysFont("Pixel Craft", 50)
+    second_page_text = text_font.render('Press Enter to Restart.', True, (255, 255, 255))
     
     # Get the dimensions of the screen
     screen_width = screen.get_width()
     screen_height = screen.get_height()
     
-    # Calculate the center coordinates for the text
-    text_x = (screen_width - game_over_text.get_width()) / 2
-    text_y = (screen_height - game_over_text.get_height()) / 2
+    # Calculate the center coordinates for the first page text
+    game_over_text_x = (screen_width - game_over_text.get_width()) / 2
+    game_over_text_y = (screen_height - game_over_text.get_height()) / 2
     
-    # Blit the text to the screen at the calculated center coordinates
-    screen.blit(game_over_text, (text_x, text_y))
+    # Calculate the center coordinates for the second page text
+    second_page_text_x = (screen_width - second_page_text.get_width()) / 2
+    second_page_text_y = game_over_text_y + game_over_text.get_height() + 20  # Add some space between the two messages
+    
+    # Blit the first page text to the screen at the calculated center coordinates
+    screen.blit(game_over_text, (game_over_text_x, game_over_text_y))
+    
+    # Blit the second page text to the screen at the calculated center coordinates
+    screen.blit(second_page_text, (second_page_text_x, second_page_text_y))
+    
+    pygame.display.flip()  # Update the display
+    
+    
+
 
     #load sound
     pygame.mixer.music.load("assets/sounds/Super_Mario_64_Burn_SFX.wav")
@@ -60,7 +91,17 @@ def game_lost(screen):
     pygame.display.update()
     pygame.time.delay(3000)
     #quit game
-    pygame.quit()
+      
+      # Wait for the user to press Enter to restart the game
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                return level_state  # Exit the function to restart the game
+
+
 
 def level_win():
     print('Game Over. You Win!')
