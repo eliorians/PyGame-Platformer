@@ -2,12 +2,8 @@
 """
 TODO
 
-ESSENTIALS
-- flex player size (also flex speed/jump...)
-- finalize level 1
-- setup branches to work on diff levels
-
 LEVELS
+- correct game over screen
 - create level2
 - level1 flow into level2
 
@@ -15,7 +11,7 @@ FEATURES
 - lives
 - add text before the level starts (LVL 1)
 - make player flip when changing directions
-- menu
+- menu (option to change screen size - 2x screen size = 2x player size/speed/jump)
 
 STYLING
 - stylize lava
@@ -36,14 +32,15 @@ import pyautogui
 FPS=60
 GRAVITY=1
 
-SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size()
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
 
 def game_lost(screen):
     # Fill the screen with white color
     screen.fill((0, 0, 0))
     
     # Load text with variable size
-    text_font = pygame.font.SysFont("Pixel Craft", 150)
+    text_font = pygame.font.SysFont("Pixel Craft", 100)
     game_over_text = text_font.render('Game Over. You Lose.', True, (255, 255, 255))
     
     # Get the dimensions of the screen

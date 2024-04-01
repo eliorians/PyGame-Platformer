@@ -5,7 +5,7 @@ from assets.colors import *
 
 #Player Stats
 player_speed = 5
-player_jump = 20
+player_jump = 15
 
 class Player:
 
