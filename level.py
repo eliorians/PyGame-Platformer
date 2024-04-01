@@ -3,7 +3,6 @@ from assets.colors import *
 from surface import Surface
 from lava import Lava
 from star import Star
-import pyautogui
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
