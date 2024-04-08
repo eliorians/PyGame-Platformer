@@ -3,21 +3,18 @@
 TODO
 
 ESSENTIAL
-- fin level2 (add an enemy that moves?)
-- menu quit button
+- fin level2
+- each person design their own lvl...
 
 STYLING
-- stylize lava
-- stylize star
-- stylize surfaces
-- Change music between menu & levels
+- stylize lava / surface (simple and static?)
 - make player flip when changing directions
 
 NEW FEATURES
 - lives
-- menu settings
+- menu settings (turn off music/sfx)
+- store that sells hats (doesnt affect hitbox)
 - dumplings that you can grab & shoot to damage enemies
-- store
 
 """
 
@@ -63,16 +60,16 @@ def main():
     #Menu Instantiation
     menu = Menu(screen)
 
-    #Main Menu Background Music (currently used in all levels....)
-    pygame.mixer.music.load("assets/sounds/sleep_it_off.wav")
-    pygame.mixer.music.play(-1)
-
     #Main Menu Button Instantiation
     play_button_img = pygame.image.load("assets/playButt.png").convert_alpha()
     quit_button_img = pygame.image.load("assets/quitButt.png").convert_alpha()
 
     play_button = Button(530, 150, play_button_img)
     quit_button = Button(530, 300, quit_button_img)
+
+    #Menu Music
+    pygame.mixer.music.load("assets/sounds/noodle cove.wav")
+    pygame.mixer.music.play(-1)
     
     while True:
         #Load Menu and Buttons

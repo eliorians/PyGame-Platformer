@@ -1,5 +1,5 @@
 import pygame
-from assets.colors import *
+from assets import *
 
 from objects.surface import Surface
 from objects.lava import Lava
@@ -7,6 +7,7 @@ from objects.enemy import Enemy
 from objects.star import Star
 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
+
 
 class Level:
 
@@ -62,7 +63,7 @@ level1 = Level(
     ],
     stars=[
         #star on the right side
-        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05,),
+        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05, image_path="assets/dumplin.png"),
     ],
     enemys=[
     ]
@@ -70,23 +71,20 @@ level1 = Level(
 #Level Two
 level2 = Level(
     surfaces=[
-        # ground surface
-        Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
         # floating platform on the left
         Surface(x= 0, width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
-
         # floating platform on the right
         Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
-        # lava pit at the beginning
+        # lava across the bottom
         Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
     ],
     stars=[
         # star at the end of the right floating platform
-        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.45, height=SCREEN_HEIGHT*.03,),       
+        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
     ],
     enemys=[
-        Enemy(start_x=400, end_x=400, start_y=0, end_y=600, velocity=3, horizontal=False)
+        Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
     ]
 )
