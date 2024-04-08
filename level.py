@@ -31,7 +31,7 @@ class Level:
 class Levels:
     def __init__(self):
         self.level_list = []
-        self.current_level_index = 0
+        self.current_level_index = 1
 
     def add_level(self, level):
         self.level_list.append(level)
@@ -46,7 +46,7 @@ class Levels:
 
     @property
     def current_level(self):
-        return self.level_list[self._current_level_index]
+        return self.level_list[self._current_level_index - 1]
 
 #Level One
 level1 = Level(

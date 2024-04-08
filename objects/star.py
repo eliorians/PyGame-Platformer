@@ -7,7 +7,7 @@ class Star:
         # positioning
         self.hitbox = pygame.Rect(x, y, 40, 30)
         self.image = pygame.image.load(image_path)  # load the image
-        self.image = pygame.transform.scale(self.image, (40, 30))  # scale it to the right size
+        self.image = pygame.transform.scale(self.image, (40, 30))
 
     def draw(self, screen):
         screen.blit(self.image, self.hitbox)  # draw the image

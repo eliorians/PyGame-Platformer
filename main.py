@@ -5,6 +5,7 @@ TODO
 ESSENTIAL
 - fin level2 ()
 - each person design their own lvl and object
+- background text explaining new objects
 
 STYLING
 - stylize lava / surface (simple and static?)
@@ -161,7 +162,7 @@ def level_win(levels, player):
     Result of player collecting the star in a level (win).
     '''
     #check if there are more levels available
-    if levels.current_level_index + 1 < len(levels.level_list):
+    if levels.current_level_index < len(levels.level_list):
         #increment the current level index
         levels.current_level_index += 1
         #move player back to start
