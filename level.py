@@ -3,6 +3,7 @@ from assets import *
 
 from objects.surface import Surface
 from objects.lava import Lava
+from objects.enemy import Enemy
 from objects.star import Star
 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
@@ -10,10 +11,11 @@ from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Level:
 
-    def __init__(self, surfaces, lava, stars):
+    def __init__(self, surfaces, lava, stars, enemys):
         self.surfaces = surfaces
         self.lava = lava
         self.stars = stars
+        self.enemy = enemys
 
 
     def draw(self, screen):
@@ -23,6 +25,8 @@ class Level:
             lava.draw(screen)
         for star in self.stars:
             star.draw(screen)
+        for enemy in self.enemy:
+            enemy.draw(screen)
 
 class Levels:
     def __init__(self):
@@ -49,7 +53,7 @@ level1 = Level(
     surfaces=[
         #ground surface
         Surface(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
-        #floating platfrom in center
+        #floating platform in center
         #the formula in X ensures its centered, so long as the width is using the same value
         Surface(x=(SCREEN_WIDTH - (SCREEN_WIDTH * 0.3)) / 2, width=SCREEN_WIDTH*.3, y=SCREEN_HEIGHT*.8, height=SCREEN_HEIGHT*.05),
     ],
@@ -61,6 +65,8 @@ level1 = Level(
         #star on the right side
         Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05, image_path="assets/dumplin.png"),
     ],
+    enemys=[
+    ]
 )
 #Level Two
 level2 = Level(
@@ -68,18 +74,14 @@ level2 = Level(
         # ground surface
         Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
         # floating platform on the left
-        Surface(x= 5 , width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.7, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 0, width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
 
         # floating platform on the right
-        Surface(x=SCREEN_WIDTH * 0.6, width=SCREEN_WIDTH * 0.3, y=SCREEN_HEIGHT * 0.6, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
         # lava pit at the beginning
-        Lava(x=0, width=SCREEN_WIDTH * 0.2, y=SCREEN_HEIGHT * 0.95, height=SCREEN_HEIGHT),
-        # lava pit on the left
-        Lava(x=0, width=SCREEN_WIDTH * 1, y=SCREEN_HEIGHT * 0.95, height=SCREEN_HEIGHT),
-        # lava pit on the right
-        Lava(x=SCREEN_WIDTH * 0.9, width=SCREEN_WIDTH * 0.1, y=SCREEN_HEIGHT * 0.95, height=SCREEN_HEIGHT),
+        Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
     ],
     stars=[
         # star at the end of the right floating platform
