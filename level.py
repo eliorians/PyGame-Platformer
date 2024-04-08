@@ -71,20 +71,20 @@ level1 = Level(
 #Level Two
 level2 = Level(
     surfaces=[
-        # ground surface
-        Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
         # floating platform on the left
         Surface(x= 0, width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
-
         # floating platform on the right
         Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
-        # lava pit at the beginning
+        # lava across the bottom
         Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
     ],
     stars=[
         # star at the end of the right floating platform
         Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
-]
+    ],
+    enemys=[
+        Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
+    ]
 )
