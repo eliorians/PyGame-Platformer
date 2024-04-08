@@ -63,16 +63,16 @@ def main():
     #Menu Instantiation
     menu = Menu(screen)
 
-    #Main Menu Background Music (currently used in all levels....)
-    pygame.mixer.music.load("assets/sounds/sleep_it_off.wav")
-    pygame.mixer.music.play(-1)
-
     #Main Menu Button Instantiation
     play_button_img = pygame.image.load("assets/playButt.png").convert_alpha()
     quit_button_img = pygame.image.load("assets/quitButt.png").convert_alpha()
 
     play_button = Button(530, 150, play_button_img)
     quit_button = Button(530, 300, quit_button_img)
+
+    #play menu music
+    pygame.mixer.music.load("assets/sounds/noodle cove.wav")
+    pygame.mixer.music.play(-1)
     
     while True:
         #Load Menu and Buttons

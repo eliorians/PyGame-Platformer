@@ -8,6 +8,5 @@ class Lava:
         self.hitbox = pygame.Rect(x, y, width, height)
         self.color = red
 
-
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.hitbox)

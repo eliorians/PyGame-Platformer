@@ -1,11 +1,12 @@
 import pygame
-from assets.colors import *
+from assets import *
 
 from objects.surface import Surface
 from objects.lava import Lava
 from objects.star import Star
 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
+
 
 class Level:
 
@@ -58,7 +59,7 @@ level1 = Level(
     ],
     stars=[
         #star on the right side
-        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05,),
+        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05, image_path="assets/dumplin.png"),
     ],
 )
 #Level Two
@@ -82,6 +83,6 @@ level2 = Level(
     ],
     stars=[
         # star at the end of the right floating platform
-        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05),
+        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
 ]
 )
