@@ -9,24 +9,24 @@ player_jump = 15
 
 class Player:
 
-    def __init__(self, screen_width, screen_height, x, y):
-            #sprite stuff
-            self.sprite_sheet = pygame.image.load('./assets/Panda.png')
-            self.frame_width = 48
-            self.frame_height = 48
-            self.num_frames = 8
-            self.current_frame = 0
-            self.animation_speed = .2
-            self.animation_timer = 0
-            #starting position and hitbox
-            self.hitbox = pygame.Rect(x, y, 32, 32)
-            #velocity
-            self.velocity_x = 0
-            self.velocity_y = 0
-            #jumping
-            self.is_jumping = False
-            #background scroll
-            self.scroll = 0
+    def __init__(self, x, y):
+        #sprite stuff
+        self.sprite_sheet = pygame.image.load('./assets/Panda.png')
+        self.frame_width = 48
+        self.frame_height = 48
+        self.num_frames = 8
+        self.current_frame = 0
+        self.animation_speed = .2
+        self.animation_timer = 0
+        #starting position and hitbox
+        self.hitbox = pygame.Rect(x, y, 32, 32)
+        #velocity
+        self.velocity_x = 0
+        self.velocity_y = 0
+        #jumping
+        self.is_jumping = False
+        #background scroll
+        self.scroll = 0
 
     def update(self, gravity, dt, screen_width, screen_height):
         self.update_animation(dt)
@@ -104,7 +104,6 @@ class Player:
 
         #white outline of the player's hitbox
         pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
-
 
     def update_animation(self, dt):
         self.animation_timer += dt
