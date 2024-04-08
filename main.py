@@ -12,7 +12,6 @@ STYLING
 - stylize surfaces
 - Change music between menu & levels
 - make player flip when changing directions
-- add text before the level starts
 
 NEW FEATURES
 - lives
@@ -23,12 +22,12 @@ NEW FEATURES
 """
 
 import pygame
-from assets.colors import *
-from background import Background
-from level import *
-from player import Player
-from menu import *
 import pygame.mixer
+from level import *
+from player import *
+from assets.colors import *
+from objects.menu import *
+from objects.background import *
 
 #Game Settings
 FPS=60
@@ -57,13 +56,13 @@ def main():
     levels.add_level(level1)
     levels.add_level(level2)
     
-    #Background Image (takes image path, and level num)
+    #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
 
     #Menu Instantiation
     menu = Menu(screen)
 
-    #Main Menu Background Music
+    #Main Menu Background Music (currently used in all levels....)
     pygame.mixer.music.load("assets/sounds/sleep_it_off.wav")
     pygame.mixer.music.play(-1)
 
@@ -88,17 +87,31 @@ def mainGameLoop(screen, clock, player, levels, background):
     '''
     The main game loop.
     '''
+    #if the current level has been displayed
+    showLevelName = False
+    
+    while True:
 
-    while True: 
+        #Display the Current Level
+        if not showLevelName:
+            screen.fill((0, 0, 0)) 
+            text_font = pygame.font.SysFont("Pixel Craft", 100)
+            text = text_font.render(f'Level: {levels.current_level_index}', True, (255, 255, 255))
+            screen.blit(text, ((SCREEN_WIDTH - text.get_width()) / 2, (SCREEN_HEIGHT - text.get_height()) / 2))
+            pygame.display.update()
+            pygame.time.delay(1000)
+            showLevelName = True
 
         #Game Controls
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                main()
             elif event.type == pygame.KEYDOWN:
                 #Exit Game w/ Escape
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
+                    main()
                 #Move Left
                 elif event.key == pygame.K_a:
                     player.move_left()
@@ -123,6 +136,7 @@ def mainGameLoop(screen, clock, player, levels, background):
         for star in levels.current_level.stars:
             if player.starCollisions(star):
                 level_win(levels, player)
+                showLevelName = False
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
                 

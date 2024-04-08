@@ -1,12 +1,11 @@
 import pygame
 from assets.colors import *
 
-from surface import Surface
-from lava import Lava
-from star import Star
+from objects.surface import Surface
+from objects.lava import Lava
+from objects.star import Star
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Level:
 
@@ -14,6 +13,7 @@ class Level:
         self.surfaces = surfaces
         self.lava = lava
         self.stars = stars
+
 
     def draw(self, screen):
         for surface in self.surfaces:
