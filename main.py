@@ -95,10 +95,12 @@ def mainGameLoop(screen, clock, player, levels, background):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                main()
             elif event.type == pygame.KEYDOWN:
                 #Exit Game w/ Escape
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
+                    main()
                 #Move Left
                 elif event.key == pygame.K_a:
                     player.move_left()
