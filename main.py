@@ -56,7 +56,7 @@ def main():
     levels.add_level(level1)
     levels.add_level(level2)
     
-    #Background Image (takes image path, and level num)
+    #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
 
     #Menu Instantiation
@@ -87,7 +87,9 @@ def mainGameLoop(screen, clock, player, levels, background):
     '''
     The main game loop.
     '''
-    showLevelName = False #if the current level has been displayed
+    #if the current level has been displayed
+    showLevelName = False
+    
     while True:
 
         #Display the Current Level
@@ -99,7 +101,6 @@ def mainGameLoop(screen, clock, player, levels, background):
             pygame.display.update()
             pygame.time.delay(1000)
             showLevelName = True
-
 
         #Game Controls
         for event in pygame.event.get():
