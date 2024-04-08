@@ -24,6 +24,7 @@ NEW FEATURES
 import pygame
 import pygame.mixer
 from level import *
+from objects.button import Button
 from player import *
 from assets.colors import *
 from objects.menu import *
@@ -68,12 +69,16 @@ def main():
 
     #Main Menu Button Instantiation
     play_button_img = pygame.image.load("assets/playButt.png").convert_alpha()
+    quit_button_img = pygame.image.load("assets/quitButt.png").convert_alpha()
+
     play_button = Button(530, 150, play_button_img)
+    quit_button = Button(530, 300, quit_button_img)
     
     while True:
         #Load Menu and Buttons
         menu.draw()
         play_button.draw(screen)
+        quit_button.draw(screen)
         pygame.display.update()
 
         #Menu Controls
@@ -82,6 +87,10 @@ def main():
                 pygame.quit()
             elif play_button.draw(screen):
                 mainGameLoop(screen, clock, player, levels, background)
+            elif quit_button.draw(screen):
+                pygame.quit()
+
+            
         
 def mainGameLoop(screen, clock, player, levels, background):
     '''
