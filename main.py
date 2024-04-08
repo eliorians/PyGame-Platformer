@@ -3,8 +3,8 @@
 TODO
 
 ESSENTIAL
-- fin level2
-- each person design their own lvl...
+- fin level2 ()
+- each person design their own lvl and object
 
 STYLING
 - stylize lava / surface (simple and static?)
@@ -12,6 +12,7 @@ STYLING
 
 NEW FEATURES
 - lives
+- menu level select
 - menu settings (turn off music/sfx)
 - store that sells hats (doesnt affect hitbox)
 - dumplings that you can grab & shoot to damage enemies
@@ -86,8 +87,6 @@ def main():
                 mainGameLoop(screen, clock, player, levels, background)
             elif quit_button.draw(screen):
                 pygame.quit()
-
-            
         
 def mainGameLoop(screen, clock, player, levels, background):
     '''

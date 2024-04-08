@@ -63,7 +63,7 @@ level1 = Level(
     ],
     stars=[
         #star on the right side
-        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH*0.9, y=SCREEN_HEIGHT*0.85, image_path="assets/dumplin.png"),
     ],
     enemys=[
     ]
@@ -82,7 +82,7 @@ level2 = Level(
     ],
     stars=[
         # star at the end of the right floating platform
-        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.4, image_path="assets/dumplin.png"),
     ],
     enemys=[
         Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
