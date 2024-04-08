@@ -1,5 +1,6 @@
 
 import pygame
+from assets.colors import *
 
 class Enemy:
     def __init__(self, start_x, start_y, end_x, end_y, velocity, horizontal):
@@ -30,5 +31,5 @@ class Enemy:
                 self.velocity *= -1
 
     def draw(self, screen):
-        pygame.draw.rect(screen, (255, 0, 0), self.hitbox)
+        pygame.draw.rect(screen, black, self.hitbox)
 
