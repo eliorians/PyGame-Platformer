@@ -43,17 +43,6 @@ class Levels:
     def current_level(self):
         return self.level_list[self._current_level_index]
 
-    def level_win(self, player):
-        #check if there are more levels available
-        if self.current_level_index + 1 < len(self.level_list):
-            #increment the current level index
-            self.current_level_index += 1
-            #move player back to start
-            player.reset_position()
-        else:
-            print('Congratulations! You have completed all levels!')
-            pygame.quit()
-
 #Level One
 level1 = Level(
     surfaces=[
@@ -72,6 +61,7 @@ level1 = Level(
         Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05,),
     ],
 )
+#Level Two
 level2 = Level(
     surfaces=[
         # ground surface
