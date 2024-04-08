@@ -12,7 +12,6 @@ STYLING
 - stylize surfaces
 - Change music between menu & levels
 - make player flip when changing directions
-- add text before the level starts
 
 NEW FEATURES
 - lives
@@ -88,8 +87,19 @@ def mainGameLoop(screen, clock, player, levels, background):
     '''
     The main game loop.
     '''
+    showLevelName = False #if the current level has been displayed
+    while True:
 
-    while True: 
+        #Display the Current Level
+        if not showLevelName:
+            screen.fill((0, 0, 0)) 
+            text_font = pygame.font.SysFont("Pixel Craft", 100)
+            text = text_font.render(f'Level: {levels.current_level_index}', True, (255, 255, 255))
+            screen.blit(text, ((SCREEN_WIDTH - text.get_width()) / 2, (SCREEN_HEIGHT - text.get_height()) / 2))
+            pygame.display.update()
+            pygame.time.delay(1000)
+            showLevelName = True
+
 
         #Game Controls
         for event in pygame.event.get():
@@ -125,6 +135,7 @@ def mainGameLoop(screen, clock, player, levels, background):
         for star in levels.current_level.stars:
             if player.starCollisions(star):
                 level_win(levels, player)
+                showLevelName = False
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
                 
