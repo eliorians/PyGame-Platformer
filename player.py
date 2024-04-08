@@ -6,7 +6,6 @@ from assets.colors import *
 #Player Stats
 player_speed = 5
 player_jump = 15
-
 class Player:
 
     def __init__(self, x, y):

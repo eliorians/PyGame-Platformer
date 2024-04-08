@@ -98,7 +98,7 @@ def mainGameLoop(screen, clock, player, levels, background):
     '''
     #if the current level has been displayed
     showLevelName = False
-    
+
     while True:
 
         #Display the Current Level
@@ -137,6 +137,10 @@ def mainGameLoop(screen, clock, player, levels, background):
         
         #Update Player
         player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)   
+
+        #Update Enemies
+        for enemy in levels.current_level.enemy:
+            enemy.update()
 
         #Player/Object Collisions
         for lava in levels.current_level.lava:
