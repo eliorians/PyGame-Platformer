@@ -63,7 +63,7 @@ def main():
     #Menu Instantiation
     menu = Menu(screen)
 
-    #Main Menu Background Music
+    #Main Menu Background Music (currently used in all levels....)
     pygame.mixer.music.load("assets/sounds/sleep_it_off.wav")
     pygame.mixer.music.play(-1)
 
