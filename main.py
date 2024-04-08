@@ -2,27 +2,20 @@
 """
 TODO
 
-LEVELS
- 
-- correct game over screen
-- create level2
-- level1 flow into level2
-
-FEATURES
-- lives
+HIGH PRIORITY
+- fin level2 (add a bug that moves?)
 - add text before the level starts (LVL 1)
-- make player flip when changing directions
-- Menu is Working! Add more buttons to menu (I have the full asset pack)
-- Smooth movement (Soemtimes gets jammed when changing directions)
-- Add dumplings that you can grab & shoot
-- Change music between menu & levels
-- Add a store (why not?)
-
-STYLING
+- lives
+- menu (start game, options, quit)
 - stylize lava
 - stylize star
 - stylize surfaces
-- Background for different levels
+
+LOW PRIORITY
+- make player flip when changing directions
+- Add dumplings that you can grab & shoot
+- Change music between menu & levels
+- Add a store (why not?)
 
 """
 
