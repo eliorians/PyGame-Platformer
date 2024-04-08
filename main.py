@@ -3,6 +3,7 @@
 TODO
 
 LEVELS
+ 
 - correct game over screen
 - create level2
 - level1 flow into level2
@@ -11,7 +12,11 @@ FEATURES
 - lives
 - add text before the level starts (LVL 1)
 - make player flip when changing directions
-- menu (option to change screen size - 2x screen size = 2x player size/speed/jump)
+- Menu is Working! Add more buttons to menu (I have the full asset pack)
+- Smooth movement (Soemtimes gets jammed when changing directions)
+- Add dumplings that you can grab & shoot
+- Change music between menu & levels
+- Add a store (why not?)
 
 STYLING
 - stylize lava
@@ -83,59 +88,79 @@ def main():
     #Background Image (takes image path, and level num)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
 
+    #Menu Instantiation
+    menu = Menu(screen)
+
+    #Button Instantiation
+    play_button_img = pygame.image.load("assets/playButt.png").convert_alpha()
+    play_button = Button(530, 150, play_button_img)
+
     #Background Music
     pygame.mixer.music.load("assets/sounds/sleep_it_off.wav")
     pygame.mixer.music.play(-1)
     
     #Main Game Loop
     gameRunning = True
+    inMenu = True
 
     while gameRunning:
-        mainMenu = Menu(screen)
-        mainMenu.draw(screen)
+        if inMenu:
+            menu.draw()
+            play_button.draw(screen)
+            pygame.display.update()
 
-        #Game Controls
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                gameRunning = False
-            elif event.type == pygame.KEYDOWN:
-                #Exit Game w/ Escape
-                if event.key == pygame.K_ESCAPE:
+            #Game Controls for menu
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                     gameRunning = False
-                #Move Left
-                elif event.key == pygame.K_a:
-                    player.move_left()
-                #Move Right
-                elif event.key == pygame.K_d:
-                    player.move_right()
-                #Jump
-                elif event.key == pygame.K_w:
-                    player.jump()
-            elif event.type == pygame.KEYUP:
-                #stop moving when the A or D key is released
-                if event.key == pygame.K_a or event.key == pygame.K_d:
-                    player.stop_moving()
-  
-        #Update Player
-        player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)   
+                elif play_button.draw(screen):
+                    inMenu = False
+        
+        else:
 
-        #Player/Object Collisions
-        for lava in levels.current_level.lava:
-            if player.lavaCollisions(lava):
-                game_lost(screen)
-        for star in levels.current_level.stars:
-            if player.starCollisions(star):
-                levels.level_win(player)
-        for surface in levels.current_level.surfaces:
-            player.surfaceCollisions(surface)
-        
-        #Screen Updates (order determines layer)
-        background.draw_bg(player)
-        levels.current_level.draw(screen)
-        player.draw(screen)
-        pygame.display.update()
-        clock.tick(FPS)
-        
+            #Game Controls
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    gameRunning = False
+                elif event.type == pygame.KEYDOWN:
+                    #Exit Game w/ Escape
+                    if event.key == pygame.K_ESCAPE:
+                        gameRunning = False
+                    #Move Left
+                    elif event.key == pygame.K_a:
+                        player.move_left()
+                    #Move Right
+                    elif event.key == pygame.K_d:
+                        player.move_right()
+                    #Jump
+                    elif event.key == pygame.K_w:
+                        player.jump()
+                elif event.type == pygame.KEYUP:
+                    #stop moving when the A or D key is released
+                    if event.key == pygame.K_a or event.key == pygame.K_d:
+                        player.stop_moving()
+    
+            #Update Player
+            player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)   
+
+            #Player/Object Collisions
+            for lava in levels.current_level.lava:
+                if player.lavaCollisions(lava):
+                    game_lost(screen)
+            for star in levels.current_level.stars:
+                if player.starCollisions(star):
+                    levels.level_win(player)
+            for surface in levels.current_level.surfaces:
+                player.surfaceCollisions(surface)
+            
+            #Screen Updates (order determines layer)
+            background.draw_bg(player)
+            levels.current_level.draw(screen)
+            player.draw(screen)
+            pygame.display.update()
+            clock.tick(FPS)
+            
+    
     pygame.quit() 
 
 if __name__ == '__main__':
