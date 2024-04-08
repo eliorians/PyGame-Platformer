@@ -1,9 +1,9 @@
 import pygame
 from assets.colors import *
 
-from surface import Surface
-from lava import Lava
-from star import Star
+from objects.surface import Surface
+from objects.lava import Lava
+from objects.star import Star
 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
 

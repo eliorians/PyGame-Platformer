@@ -22,12 +22,12 @@ NEW FEATURES
 """
 
 import pygame
-from assets.colors import *
-from background import Background
-from level import *
-from player import Player
-from menu import *
 import pygame.mixer
+from level import *
+from player import *
+from assets.colors import *
+from objects.menu import *
+from objects.background import *
 
 #Game Settings
 FPS=60
