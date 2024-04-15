@@ -105,13 +105,12 @@ level3 = Level(
     lava=[
     ],
     stars=[
-        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.1, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.1),
     ],
     enemys=[
         Enemy(start_x=100, end_x=400, start_y=SCREEN_HEIGHT*.78, end_y=500, velocity=2, horizontal=True)
     ],
     bamboo=[
-        # Makes you jump high
-        Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7, image_path="assets/bamboo.png"),
+        Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7),
     ]
 )

@@ -3,10 +3,10 @@ from assets.colors import *
 
 class Bamboo:
 
-    def __init__(self, x, y, image_path):
+    def __init__(self, x, y):
         # positioning
         self.hitbox = pygame.Rect(x, y, 40, 30)
-        self.image = pygame.image.load(image_path)  # load the image
+        self.image = pygame.image.load("assets/bamboo.png")  # load the image
         self.image = pygame.transform.scale(self.image, (80, 60))
 
         #Blank image
