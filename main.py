@@ -3,12 +3,13 @@
 TODO
 
 ESSENTIAL
-- fin level2 ()
+- fin level2 & the enemey
 - each person design their own lvl and object
 - background text explaining new objects
 
 STYLING
 - stylize lava / surface (simple and static?)
+- stylize enemy
 - make player flip when changing directions
 
 NEW FEATURES
