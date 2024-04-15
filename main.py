@@ -16,7 +16,6 @@ STYLING
 
 NEW FEATURES
 - lives
-- menu level select
 - menu settings (turn off music/sfx)
 - store that sells hats (doesnt affect hitbox)
 
@@ -56,7 +55,8 @@ def main():
     levels = Levels()
     levels.add_level(level1)
     levels.add_level(level2)
-
+    levels.add_level(level3)
+    
     #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
 
@@ -89,6 +89,8 @@ def main():
                 mainGameLoop(screen, clock, player, levels, background)
             elif quit_button.draw(screen):
                 pygame.quit()
+
+            
         
 def mainGameLoop(screen, clock, player, levels, background):
     '''
@@ -151,6 +153,10 @@ def mainGameLoop(screen, clock, player, levels, background):
             if player.starCollisions(star):
                 level_win(screen, levels, player)
                 showLevelName = False
+        for bamboo in levels.current_level.bamboo:
+            if player.bambooCollisions(bamboo):
+                player.upgrade_jump()
+                bamboo.here = True
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
                 
@@ -166,7 +172,7 @@ def level_win(screen, levels, player):
     Result of player collecting the star in a level (win).
     '''
     #check if there are more levels available
-    if levels.current_level_index < len(levels.level_list):
+    if levels.current_level_index + 1 < len(levels.level_list):
         #increment the current level index
         levels.current_level_index += 1
         #move player back to start

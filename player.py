@@ -3,9 +3,6 @@ import pygame
 
 from assets.colors import *
 
-#Player Stats
-player_speed = 5
-player_jump = 15
 class Player:
 
     def __init__(self, x, y):
@@ -26,7 +23,13 @@ class Player:
         self.is_jumping = False
         #background scroll
         self.scroll = 0
+<<<<<<< HEAD
+        #Player stats
+        self.player_speed = 5
+        self.player_jump = 15
+=======
         self.gravity = 1
+>>>>>>> e7b3a48c5dd220c32ea4483911cd08df280c0430
 
     def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
@@ -37,15 +40,15 @@ class Player:
         self.update_scroll()
     
     def move_left(self):
-        self.velocity_x = -player_speed
+        self.velocity_x = -self.player_speed
 
     def move_right(self):
-        self.velocity_x = player_speed
+        self.velocity_x = self.player_speed
 
     def jump(self):
         if not self.is_jumping:
             self.is_jumping = True
-            self.velocity_y = -player_jump
+            self.velocity_y = -self.player_jump
 
     def apply_gravity(self):
         self.velocity_y += self.gravity
@@ -87,6 +90,11 @@ class Player:
             return True
         return False
     
+    def bambooCollisions(self, bamboo):
+        if self.hitbox.colliderect(bamboo.hitbox):
+            return True
+        return False
+    
     def surfaceCollisions(self, surface):
         if self.hitbox.colliderect(surface.hitbox):
             #jumping on top of the surface
@@ -125,3 +133,7 @@ class Player:
     def reset_position(self):
         self.hitbox.x = 0
         self.hitbox.y = 0
+        self.player_jump = 15
+
+    def upgrade_jump(self):
+        self.player_jump = 30
