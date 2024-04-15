@@ -76,6 +76,11 @@ class Player:
             return True
         return False
     
+    def enemyCollisions(self, enemy):
+        if self.hitbox.colliderect(enemy.hitbox):
+            return True
+        return False
+    
     def starCollisions(self, star):
         if self.hitbox.colliderect(star.hitbox):
             return True

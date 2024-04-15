@@ -56,7 +56,7 @@ def main():
     levels = Levels()
     levels.add_level(level1)
     levels.add_level(level2)
-    
+
     #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
 
@@ -143,6 +143,9 @@ def mainGameLoop(screen, clock, player, levels, background):
         #Player/Object Collisions
         for lava in levels.current_level.lava:
             if player.lavaCollisions(lava):
+                level_lost(screen)
+        for enemy in levels.current_level.enemy:
+            if player.enemyCollisions(enemy):
                 level_lost(screen)
         for star in levels.current_level.stars:
             if player.starCollisions(star):
