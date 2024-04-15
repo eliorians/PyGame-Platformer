@@ -67,7 +67,7 @@ level1 = Level(
     ],
     stars=[
         #star on the right side
-        Star(x=SCREEN_WIDTH*0.9, y=SCREEN_HEIGHT*0.85, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH*0.9, y=SCREEN_HEIGHT*0.85),
     ],
     enemys=[
     ],
@@ -79,19 +79,20 @@ level1 = Level(
 level2 = Level(
     surfaces=[
         # floating platform on the left
-        Surface(x= 0, width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 0, width=SCREEN_WIDTH * 0.45, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
         # floating platform on the right
-        Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 470, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
         # lava across the bottom
-        Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
+        Lava(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
     ],
     stars=[
         # star at the end of the right floating platform
-        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.4, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.4),
     ],
     enemys=[
+<<<<<<< HEAD
         Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
     ],
     bamboo=[
@@ -120,5 +121,9 @@ level3 = Level(
     bamboo=[
         # Makes you jump high
         Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7, image_path="assets/bamboo.png"),
+=======
+        # enemy patroling vertically in center
+        Enemy(start_x=SCREEN_WIDTH / 2, end_x=SCREEN_WIDTH / 2, start_y=150, end_y=375, velocity=2, horizontal=False)
+>>>>>>> e7b3a48c5dd220c32ea4483911cd08df280c0430
     ]
 )

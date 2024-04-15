@@ -23,13 +23,17 @@ class Player:
         self.is_jumping = False
         #background scroll
         self.scroll = 0
+<<<<<<< HEAD
         #Player stats
         self.player_speed = 5
         self.player_jump = 15
+=======
+        self.gravity = 1
+>>>>>>> e7b3a48c5dd220c32ea4483911cd08df280c0430
 
-    def update(self, gravity, dt, screen_width, screen_height):
+    def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
-        self.apply_gravity(gravity)
+        self.apply_gravity()
         self.hitbox.x += self.velocity_x
         self.hitbox.y += self.velocity_y
         self.screenCollisions(screen_width, screen_height)
@@ -46,8 +50,8 @@ class Player:
             self.is_jumping = True
             self.velocity_y = -self.player_jump
 
-    def apply_gravity(self, gravity):
-        self.velocity_y += gravity
+    def apply_gravity(self):
+        self.velocity_y += self.gravity
 
     def stop_moving(self):
         self.velocity_x = 0
@@ -73,6 +77,11 @@ class Player:
 
     def lavaCollisions(self, lava):
         if self.hitbox.colliderect(lava.hitbox):
+            return True
+        return False
+    
+    def enemyCollisions(self, enemy):
+        if self.hitbox.colliderect(enemy.hitbox):
             return True
         return False
     
