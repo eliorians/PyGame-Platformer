@@ -113,7 +113,7 @@ class Player:
         screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
 
         #white outline of the player's hitbox
-        pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
+        #pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
 
     def update_animation(self, dt):
         self.animation_timer += dt
