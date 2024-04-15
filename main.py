@@ -19,6 +19,7 @@ NEW FEATURES
 - menu level select
 - menu settings (turn off music/sfx)
 - store that sells hats (doesnt affect hitbox)
+
 """
 
 import pygame
