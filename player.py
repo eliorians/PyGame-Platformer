@@ -81,6 +81,11 @@ class Player:
             return True
         return False
     
+    def spikesCollisions(self, spikes):
+        if self.hitbox.colliderect(spikes.hitbox):
+            return True
+        return False
+    
     def surfaceCollisions(self, surface):
         if self.hitbox.colliderect(surface.hitbox):
             #jumping on top of the surface

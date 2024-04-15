@@ -53,6 +53,7 @@ def main():
     levels = Levels()
     levels.add_level(level1)
     levels.add_level(level2)
+    levels.add_level(level4)
     
     #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
@@ -140,16 +141,23 @@ def mainGameLoop(screen, clock, player, levels, background):
             enemy.update()
 
         #Player/Object Collisions
+        for spikes in levels.current_level.spikes:
+            if player.spikesCollisions(spikes):
+                level_lost(screen)
+
         for lava in levels.current_level.lava:
             if player.lavaCollisions(lava):
                 level_lost(screen)
+       
         for star in levels.current_level.stars:
             if player.starCollisions(star):
                 level_win(levels, player)
                 showLevelName = False
+       
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
-                
+       
+        
         #Screen Updates (order determines layer)
         background.draw_bg(player)
         levels.current_level.draw(screen)

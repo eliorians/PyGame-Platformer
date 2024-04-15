@@ -5,17 +5,18 @@ from objects.surface import Surface
 from objects.lava import Lava
 from objects.enemy import Enemy
 from objects.star import Star
-
+from objects.spikes import Spikes 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
 
 class Level:
 
-    def __init__(self, surfaces, lava, stars, enemys):
+    def __init__(self, surfaces, lava, stars, enemys, spikes):
         self.surfaces = surfaces
         self.lava = lava
         self.stars = stars
         self.enemy = enemys
+        self.spikes = spikes
 
 
     def draw(self, screen):
@@ -27,6 +28,8 @@ class Level:
             star.draw(screen)
         for enemy in self.enemy:
             enemy.draw(screen)
+        for spikes in self.spikes:
+            spikes.draw(screen)
 
 class Levels:
     def __init__(self):
@@ -66,6 +69,9 @@ level1 = Level(
         Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05, image_path="assets/dumplin.png"),
     ],
     enemys=[
+    ],
+    spikes=[
+        
     ]
 )
 #Level Two
@@ -82,9 +88,38 @@ level2 = Level(
     ],
     stars=[
         # star at the end of the right floating platform
-        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.6, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.45, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
     ],
     enemys=[
         Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
+    ],
+    spikes=[
+    ] 
+)
+# level 4
+level4 = Level(
+    surfaces=[
+        # floating platform on the left
+        Surface(x= 0, width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.7, height=SCREEN_HEIGHT * 0.05),
+        # floating platform on the right
+        Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
+        
+        Surface(x= 250, width=SCREEN_WIDTH * 0.3, y=SCREEN_HEIGHT * 0.3, height=SCREEN_HEIGHT * 0.05)
+    ],
+    lava=[
+        # lava across the bottom
+        Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
+    ],
+    stars=[
+        # star at the end of the right floating platform
+        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.45, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
+    ],
+    enemys=[
+        Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
+    ],
+    spikes=[
+        Spikes(x=SCREEN_WIDTH * 0.38 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*0.32, height=SCREEN_HEIGHT*0.05, image_path= "assets/spikes.png"),
     ]
 )
+
+
