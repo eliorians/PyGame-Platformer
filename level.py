@@ -9,7 +9,6 @@ from objects.bamboo import Bamboo
 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
-
 class Level:
 
     def __init__(self, surfaces, lava, stars, enemys, bamboo):
@@ -18,7 +17,6 @@ class Level:
         self.stars = stars
         self.enemy = enemys
         self.bamboo = bamboo
-
 
     def draw(self, screen):
         for surface in self.surfaces:
@@ -92,27 +90,21 @@ level2 = Level(
         Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.4),
     ],
     enemys=[
-<<<<<<< HEAD
-        Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
+        Enemy(start_x=SCREEN_WIDTH / 2, end_x=SCREEN_WIDTH / 2, start_y=150, end_y=375, velocity=2, horizontal=False)
     ],
     bamboo=[
-
     ]
 )
 
 #Level Three - Carson's Level
 level3 = Level(
     surfaces=[
-        # floating platform on the left
         Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
-        # floating platform on the right
         Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.2, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
-        
     ],
     stars=[
-        # star at the end of the right floating platform
         Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.1, image_path="assets/dumplin.png"),
     ],
     enemys=[
@@ -121,9 +113,5 @@ level3 = Level(
     bamboo=[
         # Makes you jump high
         Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7, image_path="assets/bamboo.png"),
-=======
-        # enemy patroling vertically in center
-        Enemy(start_x=SCREEN_WIDTH / 2, end_x=SCREEN_WIDTH / 2, start_y=150, end_y=375, velocity=2, horizontal=False)
->>>>>>> e7b3a48c5dd220c32ea4483911cd08df280c0430
     ]
 )
