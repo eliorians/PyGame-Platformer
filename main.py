@@ -3,12 +3,10 @@
 TODO
 
 ESSENTIAL
-- fin level2 & the enemey
 - each person design their own lvl and object
 - background text explaining new objects
 
 STYLING
-- stylize lava / surface (simple and static?)
 - stylize enemy
 - make player flip when changing directions
 
@@ -149,7 +147,7 @@ def mainGameLoop(screen, clock, player, levels, background):
                 level_lost(screen)
         for star in levels.current_level.stars:
             if player.starCollisions(star):
-                level_win(levels, player)
+                level_win(screen, levels, player)
                 showLevelName = False
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
@@ -161,7 +159,7 @@ def mainGameLoop(screen, clock, player, levels, background):
         pygame.display.update()
         clock.tick(FPS)
     
-def level_win(levels, player):
+def level_win(screen, levels, player):
     '''
     Result of player collecting the star in a level (win).
     '''
@@ -172,7 +170,21 @@ def level_win(levels, player):
         #move player back to start
         player.reset_position()
     else:
-        print('Congratulations! You have completed all levels!')
+        #black background
+        screen.fill((0, 0, 0))
+        #create text
+        text_font = pygame.font.SysFont("Pixel Craft", 100)
+        text = text_font.render('All Levels Complete!', True, (255, 255, 255))
+        #position text
+        screen_width = screen.get_width()
+        screen_height = screen.get_height()
+        text_x = (screen_width - text.get_width()) / 2
+        text_y = (screen_height - text.get_height()) / 2
+        #draw
+        screen.blit(text, (text_x, text_y))
+        #wait and quit
+        pygame.display.update()
+        pygame.time.delay(3000)
         pygame.quit()
         main()
 
