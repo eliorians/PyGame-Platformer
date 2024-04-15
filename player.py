@@ -23,13 +23,10 @@ class Player:
         self.is_jumping = False
         #background scroll
         self.scroll = 0
-<<<<<<< HEAD
         #Player stats
         self.player_speed = 5
         self.player_jump = 15
-=======
         self.gravity = 1
->>>>>>> e7b3a48c5dd220c32ea4483911cd08df280c0430
 
     def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
