@@ -4,6 +4,10 @@ TODO
 
 ESSENTIAL
 - each person design their own lvl and object
+--carson (lvl3) bamboo that allows you to jump higher
+--aaron (lvl4)  spikes
+--cj (lvl5)     item that flips gravity
+
 - background text explaining new objects
 
 STYLING
@@ -15,8 +19,6 @@ NEW FEATURES
 - menu level select
 - menu settings (turn off music/sfx)
 - store that sells hats (doesnt affect hitbox)
-- dumplings that you can grab & shoot to damage enemies
-
 """
 
 import pygame
@@ -30,7 +32,6 @@ from objects.background import *
 
 #Game Settings
 FPS=60
-GRAVITY=1
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
@@ -132,7 +133,7 @@ def mainGameLoop(screen, clock, player, levels, background):
                     player.stop_moving()
         
         #Update Player
-        player.update(GRAVITY, clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)   
+        player.update(clock.tick(FPS) / 1000.0, SCREEN_WIDTH, SCREEN_HEIGHT)   
 
         #Update Enemies
         for enemy in levels.current_level.enemy:

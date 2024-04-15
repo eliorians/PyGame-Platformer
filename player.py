@@ -26,10 +26,11 @@ class Player:
         self.is_jumping = False
         #background scroll
         self.scroll = 0
+        self.gravity = 1
 
-    def update(self, gravity, dt, screen_width, screen_height):
+    def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
-        self.apply_gravity(gravity)
+        self.apply_gravity()
         self.hitbox.x += self.velocity_x
         self.hitbox.y += self.velocity_y
         self.screenCollisions(screen_width, screen_height)
@@ -46,8 +47,8 @@ class Player:
             self.is_jumping = True
             self.velocity_y = -player_jump
 
-    def apply_gravity(self, gravity):
-        self.velocity_y += gravity
+    def apply_gravity(self):
+        self.velocity_y += self.gravity
 
     def stop_moving(self):
         self.velocity_x = 0
