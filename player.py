@@ -3,9 +3,6 @@ import pygame
 
 from assets.colors import *
 
-#Player Stats
-player_speed = 5
-player_jump = 15
 class Player:
 
     def __init__(self, x, y):
@@ -26,28 +23,32 @@ class Player:
         self.is_jumping = False
         #background scroll
         self.scroll = 0
+        #Player stats
+        self.player_speed = 5
+        self.player_jump = 15
+        self.gravity = 1
 
-    def update(self, gravity, dt, screen_width, screen_height):
+    def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
-        self.apply_gravity(gravity)
+        self.apply_gravity()
         self.hitbox.x += self.velocity_x
         self.hitbox.y += self.velocity_y
         self.screenCollisions(screen_width, screen_height)
         self.update_scroll()
     
     def move_left(self):
-        self.velocity_x = -player_speed
+        self.velocity_x = -self.player_speed
 
     def move_right(self):
-        self.velocity_x = player_speed
+        self.velocity_x = self.player_speed
 
     def jump(self):
         if not self.is_jumping:
             self.is_jumping = True
-            self.velocity_y = -player_jump
+            self.velocity_y = -self.player_jump
 
-    def apply_gravity(self, gravity):
-        self.velocity_y += gravity
+    def apply_gravity(self):
+        self.velocity_y += self.gravity
 
     def stop_moving(self):
         self.velocity_x = 0
@@ -76,13 +77,23 @@ class Player:
             return True
         return False
     
+    def enemyCollisions(self, enemy):
+        if self.hitbox.colliderect(enemy.hitbox):
+            return True
+        return False
+    
     def starCollisions(self, star):
         if self.hitbox.colliderect(star.hitbox):
             return True
         return False
     
+<<<<<<< HEAD
     def spikesCollisions(self, spikes):
         if self.hitbox.colliderect(spikes.hitbox):
+=======
+    def bambooCollisions(self, bamboo):
+        if self.hitbox.colliderect(bamboo.hitbox):
+>>>>>>> main
             return True
         return False
     
@@ -107,7 +118,7 @@ class Player:
         screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
 
         #white outline of the player's hitbox
-        pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
+        #pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
 
     def update_animation(self, dt):
         self.animation_timer += dt
@@ -124,3 +135,7 @@ class Player:
     def reset_position(self):
         self.hitbox.x = 0
         self.hitbox.y = 0
+        self.player_jump = 15
+
+    def upgrade_jump(self):
+        self.player_jump = 30

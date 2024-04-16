@@ -5,18 +5,18 @@ from objects.surface import Surface
 from objects.lava import Lava
 from objects.enemy import Enemy
 from objects.star import Star
+from objects.bamboo import Bamboo
 from objects.spikes import Spikes 
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
-
 class Level:
 
-    def __init__(self, surfaces, lava, stars, enemys, spikes):
+    def __init__(self, surfaces, lava, stars, enemys, bamboo, spikes):
         self.surfaces = surfaces
         self.lava = lava
         self.stars = stars
         self.enemy = enemys
-        self.spikes = spikes
+        self.bamboo = bamboo        self.spikes = spikes
 
 
     def draw(self, screen):
@@ -28,13 +28,15 @@ class Level:
             star.draw(screen)
         for enemy in self.enemy:
             enemy.draw(screen)
+        for bamboo in self.bamboo:
+            bamboo.draw(screen)
         for spikes in self.spikes:
             spikes.draw(screen)
 
 class Levels:
     def __init__(self):
         self.level_list = []
-        self.current_level_index = 0
+        self.current_level_index = 1
 
     def add_level(self, level):
         self.level_list.append(level)
@@ -49,7 +51,7 @@ class Levels:
 
     @property
     def current_level(self):
-        return self.level_list[self._current_level_index]
+        return self.level_list[self._current_level_index - 1]
 
 #Level One
 level1 = Level(
@@ -66,9 +68,12 @@ level1 = Level(
     ],
     stars=[
         #star on the right side
-        Star(x=SCREEN_WIDTH*0.9, width=SCREEN_WIDTH*.05, y=SCREEN_HEIGHT*0.85, height=SCREEN_HEIGHT*.05, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH*0.9, y=SCREEN_HEIGHT*0.85),
     ],
     enemys=[
+    ],
+    bamboo=[
+
     ],
     spikes=[
         
@@ -78,13 +83,13 @@ level1 = Level(
 level2 = Level(
     surfaces=[
         # floating platform on the left
-        Surface(x= 0, width=SCREEN_WIDTH * 0.4, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 0, width=SCREEN_WIDTH * 0.45, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
         # floating platform on the right
-        Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 470, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
         # lava across the bottom
-        Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
+        Lava(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
     ],
     stars=[
         # star at the end of the right floating platform
@@ -113,9 +118,31 @@ level4 = Level(
     stars=[
         # star at the end of the right floating platform
         Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.05, y=SCREEN_HEIGHT*0.45, height=SCREEN_HEIGHT*0.05, image_path="assets/dumplin.png"),
+        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.4),
     ],
     enemys=[
-        Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
+        Enemy(start_x=SCREEN_WIDTH / 2, end_x=SCREEN_WIDTH / 2, start_y=150, end_y=375, velocity=2, horizontal=False)
+    ],
+    bamboo=[
+    ]
+)
+
+#Level Three - Carson's Level
+level3 = Level(
+    surfaces=[
+        Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
+        Surface(x= 450, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.2, height=SCREEN_HEIGHT * 0.05),
+    ],
+    lava=[
+    ],
+    stars=[
+        Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.1),
+    ],
+    enemys=[
+        Enemy(start_x=100, end_x=400, start_y=SCREEN_HEIGHT*.78, end_y=500, velocity=2, horizontal=True)
+    ],
+    bamboo=[
+        Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7),
     ],
     spikes=[
         Spikes(x=SCREEN_WIDTH * 0.38 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*0.32, height=SCREEN_HEIGHT*0.05, image_path= "assets/spikes.png"),
