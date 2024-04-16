@@ -163,7 +163,6 @@ def mainGameLoop(screen, clock, player, levels, background):
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
        
-        
         #Screen Updates (order determines layer)
         background.draw_bg(player)
         levels.current_level.draw(screen)
