@@ -9,6 +9,7 @@ ESSENTIAL
 --cj (lvl5)     item that flips gravity
 
 - background text explaining new objects
+- setup branches better....
 
 STYLING
 - stylize enemy
@@ -56,7 +57,6 @@ def main():
     levels.add_level(level1)
     levels.add_level(level2)
     levels.add_level(level3)
-
 
     #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
