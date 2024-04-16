@@ -87,13 +87,13 @@ class Player:
             return True
         return False
     
-<<<<<<< HEAD
     def spikesCollisions(self, spikes):
         if self.hitbox.colliderect(spikes.hitbox):
-=======
+            return True
+        return False
+
     def bambooCollisions(self, bamboo):
         if self.hitbox.colliderect(bamboo.hitbox):
->>>>>>> main
             return True
         return False
     

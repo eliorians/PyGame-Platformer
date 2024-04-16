@@ -56,7 +56,6 @@ def main():
     levels.add_level(level1)
     levels.add_level(level2)
     levels.add_level(level3)
-
     levels.add_level(level4)
 
     #Background Image (currently used in all levels...)
