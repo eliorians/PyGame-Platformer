@@ -179,7 +179,7 @@ def level_win(screen, levels, player):
         #increment the current level index
         levels.current_level_index += 1
         #move player back to start
-        player.reset_position()
+        player.reset_player()
     else:
         #black background
         screen.fill((0, 0, 0))
