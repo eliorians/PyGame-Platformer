@@ -7,17 +7,19 @@ from objects.enemy import Enemy
 from objects.star import Star
 from objects.bamboo import Bamboo
 from objects.spikes import Spikes 
+from objects.info import Info
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Level:
 
-    def __init__(self, surfaces, lava, stars, enemys, bamboo, spikes):
+    def __init__(self, surfaces, lava, stars, enemys, bamboo, spikes, info):
         self.surfaces = surfaces
         self.lava = lava
         self.stars = stars
         self.enemy = enemys
         self.bamboo = bamboo        
         self.spikes = spikes
+        self.info = info
 
     def draw(self, screen):
         for surface in self.surfaces:
@@ -32,6 +34,8 @@ class Level:
             bamboo.draw(screen)
         for spikes in self.spikes:
             spikes.draw(screen)
+        for info in self.info:
+            info.draw(screen)
 
 class Levels:
     def __init__(self):
@@ -70,11 +74,11 @@ level1 = Level(
         #star on the right side
         Star(x=SCREEN_WIDTH*0.9, y=SCREEN_HEIGHT*0.85),
     ],
-    enemys=[
-    ],
-    bamboo=[
-    ],
-    spikes=[
+    enemys=[],
+    bamboo=[],
+    spikes=[],
+    info=[
+        Info(info="Grab the dumpling to win the level!", x=600, y=300, width=100, height=100)
     ]
 )
 #Level Two
@@ -83,7 +87,7 @@ level2 = Level(
         # floating platform on the left
         Surface(x= 0, width=SCREEN_WIDTH * 0.45, y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
         # floating platform on the right
-        Surface(x= 470, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
+        Surface(x= 490, width=SCREEN_WIDTH , y=SCREEN_HEIGHT * 0.5, height=SCREEN_HEIGHT * 0.05),
     ],
     lava=[
         # lava across the bottom
@@ -94,12 +98,13 @@ level2 = Level(
         Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, y=SCREEN_HEIGHT*0.45),
     ],
     enemys=[
-        Enemy(start_x=425, end_x=425, start_y=100, end_y=500, velocity=2, horizontal=False)
+        Enemy(start_x=415, end_x=415, start_y=100, end_y=500, velocity=2, horizontal=False)
     ],
-    spikes=[
-    ],
-    bamboo=[
-    ],
+    spikes=[],
+    bamboo=[],
+    info=[
+        Info(info="Avoid the jigglypuff, it will hurt you!", x=200, y=100, width=150, height=75)
+    ]
 )
 
 #Level Three - Carson's Level
@@ -119,8 +124,8 @@ level3 = Level(
     bamboo=[
         Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7),
     ],
-    spikes=[
-    ]
+    spikes=[],
+    info=[]
 )
 
 #Level 4 - Aaron's Level
@@ -145,13 +150,9 @@ level4 = Level(
     ],
     spikes=[
         Spikes(x=SCREEN_WIDTH * 0.38 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*0.32, height=SCREEN_HEIGHT*0.05),
-    
         Spikes(x=SCREEN_WIDTH * 0.52 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*-0.03, height=SCREEN_HEIGHT*0.05),
+    ],
+    info=[
     ]
-
-  
-        
-    
-
 )
 
