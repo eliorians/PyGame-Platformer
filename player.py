@@ -66,6 +66,8 @@ class Player:
         if self.hitbox.top < 0:
             self.hitbox.top = 0
             self.velocity_y = 0
+            if (self.gravity < 0):
+                self.is_jumping = False
         #bottom edge
         if self.hitbox.bottom > screen_height:
             self.hitbox.bottom = screen_height

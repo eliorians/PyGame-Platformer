@@ -158,4 +158,3 @@ level4 = Level(
         Info(info="Avoid the spikes, they will hurt you!", x=50, y=100, width=100, height=125)
     ]
 )
-
