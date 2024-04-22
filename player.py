@@ -42,6 +42,9 @@ class Player:
     def move_right(self):
         self.velocity_x = self.player_speed
 
+    def stop_moving(self):
+        self.velocity_x = 0
+
     def jump(self):
         if not self.is_jumping:
             self.is_jumping = True
@@ -49,9 +52,6 @@ class Player:
 
     def apply_gravity(self):
         self.velocity_y += self.gravity
-
-    def stop_moving(self):
-        self.velocity_x = 0
 
     def screenCollisions(self, screen_width, screen_height):
         #left edge
@@ -109,17 +109,6 @@ class Player:
                     self.hitbox.top = surface.hitbox.bottom
                     self.velocity_y = 0
 
-    def draw(self, screen):
-        #get offset to recenter the players hitbox
-        offset_x = (self.hitbox.width - self.frame_width) // 2
-        offset_y = (self.hitbox.height - self.frame_height) // 2
-        frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
-        frame_surface = self.sprite_sheet.subsurface(frame_rect)
-        screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
-
-        #white outline of the player's hitbox
-        #pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
-
     def update_animation(self, dt):
         self.animation_timer += dt
         if self.animation_timer >= self.animation_speed:
@@ -132,10 +121,27 @@ class Player:
         elif self.velocity_x > 0 and self.scroll < 3000:
             self.scroll += 5
 
-    def reset_position(self):
+    def draw(self, screen):
+        #get offset to recenter the players hitbox
+        offset_x = (self.hitbox.width - self.frame_width) // 2
+        offset_y = (self.hitbox.height - self.frame_height) // 2
+        frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
+        frame_surface = self.sprite_sheet.subsurface(frame_rect)
+        screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
+
+        #white outline of the player's hitbox
+        #pygame.draw.rect(screen, (255, 255, 255), self.hitbox, 1)
+
+    def upgrade_jump(self):
+        '''
+        increase player jump, used by the bamboo object
+        '''
+        self.player_jump = 30
+
+    def reset_player(self):
+        '''
+        reset player and set player stats back to default
+        '''
         self.hitbox.x = 0
         self.hitbox.y = 0
         self.player_jump = 15
-
-    def upgrade_jump(self):
-        self.player_jump = 30
