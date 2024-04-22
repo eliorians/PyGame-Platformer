@@ -48,8 +48,12 @@ class Player:
     def jump(self):
         if not self.is_jumping:
             self.is_jumping = True
-            self.velocity_y = -self.player_jump
-
+            
+            if self.gravity < 0:
+                self.velocity_y = self.player_jump
+            else:
+                self.velocity_y = -self.player_jump
+                
     def apply_gravity(self):
         self.velocity_y += self.gravity
 
@@ -94,6 +98,11 @@ class Player:
 
     def bambooCollisions(self, bamboo):
         if self.hitbox.colliderect(bamboo.hitbox):
+            return True
+        return False
+    
+    def moonCollisions(self, moon):
+        if self.hitbox.colliderect(moon.hitbox):
             return True
         return False
     
@@ -145,3 +154,10 @@ class Player:
         self.hitbox.x = 0
         self.hitbox.y = 0
         self.player_jump = 15
+        self.gravity = 1
+
+    def flipGravity(self):
+        '''
+        Flip player gravity used by the moon object
+        '''
+        self.gravity *= -1 
