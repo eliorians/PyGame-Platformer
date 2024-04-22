@@ -134,16 +134,24 @@ level4 = Level(
         Lava(x=0,  width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.83, height=SCREEN_HEIGHT),
     ],
     stars=[
-        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, y=SCREEN_HEIGHT*0.45),
+        
         Star(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.4),
     ],
     enemys=[
-        Enemy(start_x=SCREEN_WIDTH / 2, end_x=SCREEN_WIDTH / 2, start_y=150, end_y=375, velocity=2, horizontal=False)
+        Enemy(start_x=SCREEN_WIDTH / 2, end_x=SCREEN_WIDTH / 2, start_y=220, end_y=375, velocity=2, horizontal=False)
     ],
     bamboo=[
+        Bamboo(x=SCREEN_WIDTH * 0.2, y=SCREEN_HEIGHT*0.6),
     ],
     spikes=[
         Spikes(x=SCREEN_WIDTH * 0.38 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*0.32, height=SCREEN_HEIGHT*0.05),
+    
+        Spikes(x=SCREEN_WIDTH * 0.52 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*-0.03, height=SCREEN_HEIGHT*0.05),
     ]
+
+  
+        
+    
+
 )
 
