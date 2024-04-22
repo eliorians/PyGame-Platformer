@@ -185,7 +185,7 @@ def level_win(screen, levels, player):
         screen.fill((0, 0, 0))
         #create text
         text_font = pygame.font.SysFont("Pixel Craft", 100)
-        text = text_font.render('All Levels Complete! You Win!', True, (255, 255, 255))
+        text = text_font.render('Game Over. You Win!', True, (255, 255, 255))
         #position text
         screen_width = screen.get_width()
         screen_height = screen.get_height()
@@ -207,7 +207,7 @@ def level_lost(screen):
     screen.fill((0, 0, 0))
     #create text
     text_font = pygame.font.SysFont("Pixel Craft", 100)
-    text = text_font.render('Game Over. You Lose.', True, (255, 255, 255))
+    text = text_font.render('Game Over. You Lose!', True, (255, 255, 255))
     #position text
     screen_width = screen.get_width()
     screen_height = screen.get_height()

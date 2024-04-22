@@ -98,7 +98,7 @@ level2 = Level(
         Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, y=SCREEN_HEIGHT*0.45),
     ],
     enemys=[
-        Enemy(start_x=415, end_x=415, start_y=100, end_y=500, velocity=2, horizontal=False)
+        Enemy(start_x=415, end_x=415, start_y=100, end_y=450, velocity=2, horizontal=False)
     ],
     spikes=[],
     bamboo=[],
@@ -125,7 +125,9 @@ level3 = Level(
         Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7),
     ],
     spikes=[],
-    info=[]
+    info=[
+        Info(info="Grab the bamboo to boost your jump!", x=500, y=300, width=150, height=75)
+    ]
 )
 
 #Level 4 - Aaron's Level
@@ -153,6 +155,7 @@ level4 = Level(
         Spikes(x=SCREEN_WIDTH * 0.52 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*-0.03, height=SCREEN_HEIGHT*0.05),
     ],
     info=[
+        Info(info="Avoid the spikes, they will hurt you!", x=50, y=100, width=100, height=125)
     ]
 )
 
