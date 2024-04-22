@@ -25,10 +25,10 @@ NEW FEATURES
 import pygame
 import pygame.mixer
 from level import *
-from objects.button import Button
 from player import *
 from assets.colors import *
 from objects.menu import *
+from objects.button import Button
 from objects.background import *
 
 #Game Settings
@@ -185,7 +185,7 @@ def level_win(screen, levels, player):
         screen.fill((0, 0, 0))
         #create text
         text_font = pygame.font.SysFont("Pixel Craft", 100)
-        text = text_font.render('All Levels Complete!', True, (255, 255, 255))
+        text = text_font.render('All Levels Complete! You Win!', True, (255, 255, 255))
         #position text
         screen_width = screen.get_width()
         screen_height = screen.get_height()
