@@ -54,10 +54,11 @@ def main():
 
     #Levels List & each Level Object
     levels = Levels()
-    levels.add_level(level1)
-    levels.add_level(level2)
-    levels.add_level(level3)
-    levels.add_level(level4)
+    # levels.add_level(level1)
+    # levels.add_level(level2)
+    # levels.add_level(level3)
+    # levels.add_level(level4)
+    levels.add_level(level5)
 
     #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
@@ -162,6 +163,10 @@ def mainGameLoop(screen, clock, player, levels, background):
                 player.upgrade_jump()
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
+        for moon in levels.current_level.moon:
+            if player.moonCollisions(moon):
+                moon.here = True
+                player.flipGravity()
        
         #Screen Updates (order determines layer)
         background.draw_bg(player)

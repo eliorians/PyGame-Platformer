@@ -7,17 +7,19 @@ from objects.enemy import Enemy
 from objects.star import Star
 from objects.bamboo import Bamboo
 from objects.spikes import Spikes 
+from objects.moon import Moon
 from main import SCREEN_WIDTH, SCREEN_HEIGHT
 
 class Level:
 
-    def __init__(self, surfaces, lava, stars, enemys, bamboo, spikes):
+    def __init__(self, surfaces, lava, stars, enemys, bamboo, spikes, moons):
         self.surfaces = surfaces
         self.lava = lava
         self.stars = stars
         self.enemy = enemys
         self.bamboo = bamboo        
         self.spikes = spikes
+        self.moon = moons
 
     def draw(self, screen):
         for surface in self.surfaces:
@@ -32,6 +34,8 @@ class Level:
             bamboo.draw(screen)
         for spikes in self.spikes:
             spikes.draw(screen)
+        for moon in self.moon:
+            moon.draw(screen)
 
 class Levels:
     def __init__(self):
@@ -75,7 +79,9 @@ level1 = Level(
     bamboo=[
     ],
     spikes=[
-    ]
+    ],
+    moons=[
+    ],
 )
 #Level Two
 level2 = Level(
@@ -100,6 +106,8 @@ level2 = Level(
     ],
     bamboo=[
     ],
+    moons=[
+    ],
 )
 
 #Level Three - Carson's Level
@@ -120,7 +128,9 @@ level3 = Level(
         Bamboo(x=SCREEN_WIDTH * 0.8, y=SCREEN_HEIGHT*0.7),
     ],
     spikes=[
-    ]
+    ],
+    moons=[
+    ],
 )
 
 #Level 4 - Aaron's Level
@@ -144,6 +154,26 @@ level4 = Level(
     ],
     spikes=[
         Spikes(x=SCREEN_WIDTH * 0.38 - SCREEN_WIDTH * 0.05, width=SCREEN_WIDTH*0.11, y=SCREEN_HEIGHT*0.32, height=SCREEN_HEIGHT*0.05),
-    ]
+    ],
+    moons=[
+    ],
 )
 
+level5 = Level(
+   surfaces=[
+        Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
+        # Surface(x=350, width=100, y=600, height=500),
+        Surface(x=SCREEN_WIDTH // 2 - 25, width=50, y=100, height=SCREEN_HEIGHT),  # Vertical surface from bottom to middle, slightly taller
+    ],
+    lava=[],
+    stars=[
+        Star(x=SCREEN_WIDTH * 0.9 - SCREEN_WIDTH * 0.05, y=SCREEN_HEIGHT * 0.45),
+    ],
+    enemys=[],
+    bamboo=[],
+    spikes=[],
+    moons=[
+        Moon(x=200, y=500),
+        Moon(x=650, y =0),
+    ],
+)
