@@ -198,4 +198,7 @@ level5 = Level(
         Moon(x=200, y=500),
         Moon(x=650, y =0),
     ],
+    info=[
+        Info(info="Pick up the potion to flip gravity!", x=50, y=100, width=75, height=100)
+    ]
 )
