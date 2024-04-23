@@ -3,23 +3,16 @@
 TODO
 
 ESSENTIAL
-- each person design their own lvl and object
---carson (lvl3) bamboo that allows you to jump higher
---aaron (lvl4)  spikes
---cj (lvl5)     item that flips gravity
-
-- background text explaining new objects
-- setup branches better....
+- presentation
 
 STYLING
-- stylize enemy
 - make player flip when changing directions
 
 NEW FEATURES
 - lives
 - menu level select
 - menu settings (turn off music/sfx)
-- store that sells hats (doesnt affect hitbox)
+- store
 """
 
 import pygame
