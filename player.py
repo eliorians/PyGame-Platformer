@@ -55,8 +55,12 @@ class Player:
     def jump(self):
         if not self.is_jumping:
             self.is_jumping = True
-            self.velocity_y = -self.player_jump
-
+            
+            if self.gravity < 0:
+                self.velocity_y = self.player_jump
+            else:
+                self.velocity_y = -self.player_jump
+                
     def apply_gravity(self):
         self.velocity_y += self.gravity
 
@@ -73,6 +77,8 @@ class Player:
         if self.hitbox.top < 0:
             self.hitbox.top = 0
             self.velocity_y = 0
+            if (self.gravity < 0):
+                self.is_jumping = False
         #bottom edge
         if self.hitbox.bottom > screen_height:
             self.hitbox.bottom = screen_height
@@ -104,6 +110,11 @@ class Player:
             return True
         return False
     
+    def moonCollisions(self, moon):
+        if self.hitbox.colliderect(moon.hitbox):
+            return True
+        return False
+    
     def surfaceCollisions(self, surface):
         if self.hitbox.colliderect(surface.hitbox):
             #jumping on top of the surface
@@ -132,7 +143,10 @@ class Player:
         #get offset to recenter the players hitbox
         offset_x = (self.hitbox.width - self.frame_width) // 2
         offset_y = (self.hitbox.height - self.frame_height) // 2
+        
         frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
+        if self.gravity < 0:
+            frame_surface = pygame.transform.flip(frame_surface, False, True)
 
         if self.color == "white":
             frame_surface = self.sprite_sheet.subsurface(frame_rect)
@@ -160,6 +174,13 @@ class Player:
         self.hitbox.x = 0
         self.hitbox.y = 0
         self.player_jump = 15
+        self.gravity = 1
+
+    def flipGravity(self):
+        '''
+        Flip player gravity used by the moon object
+        '''
+        self.gravity = self.gravity * -1 
 
     def set_color(self, color):
         #Changes the color of the panda

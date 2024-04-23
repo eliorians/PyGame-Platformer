@@ -3,32 +3,25 @@
 TODO
 
 ESSENTIAL
-- each person design their own lvl and object
---carson (lvl3) bamboo that allows you to jump higher
---aaron (lvl4)  spikes
---cj (lvl5)     item that flips gravity
-
-- background text explaining new objects
-- setup branches better....
+- presentation
 
 STYLING
-- stylize enemy
 - make player flip when changing directions
 
 NEW FEATURES
 - lives
 - menu level select
 - menu settings (turn off music/sfx)
-- store that sells hats (doesnt affect hitbox)
+- store
 """
 
 import pygame
 import pygame.mixer
 from level import *
-from objects.button import Button
 from player import *
 from assets.colors import *
 from objects.menu import *
+from objects.button import Button
 from objects.background import *
 
 #Game Settings
@@ -54,10 +47,11 @@ def main():
 
     #Levels List & each Level Object
     levels = Levels()
-    levels.add_level(level1)
-    levels.add_level(level2)
-    levels.add_level(level3)
-    levels.add_level(level4)
+    # levels.add_level(level1)
+    # levels.add_level(level2)
+    # levels.add_level(level3)
+    # levels.add_level(level4)
+    levels.add_level(level5)
 
     #Background Image (currently used in all levels...)
     background = Background(screen, "assets/Jungle Asset Pack/parallax background", 0)
@@ -206,6 +200,11 @@ def mainGameLoop(screen, clock, player, levels, background):
                 player.upgrade_jump()
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
+        for moon in levels.current_level.moon:
+            if player.moonCollisions(moon):
+                if moon.here == False:
+                    moon.here = True
+                    player.flipGravity()
        
         #Screen Updates (order determines layer)
         background.draw_bg(player)
@@ -229,7 +228,7 @@ def level_win(screen, levels, player):
         screen.fill((0, 0, 0))
         #create text
         text_font = pygame.font.SysFont("Pixel Craft", 100)
-        text = text_font.render('All Levels Complete!', True, (255, 255, 255))
+        text = text_font.render('Game Over. You Win!', True, (255, 255, 255))
         #position text
         screen_width = screen.get_width()
         screen_height = screen.get_height()
@@ -251,7 +250,7 @@ def level_lost(screen):
     screen.fill((0, 0, 0))
     #create text
     text_font = pygame.font.SysFont("Pixel Craft", 100)
-    text = text_font.render('Game Over. You Lose.', True, (255, 255, 255))
+    text = text_font.render('Game Over. You Lose!', True, (255, 255, 255))
     #position text
     screen_width = screen.get_width()
     screen_height = screen.get_height()
