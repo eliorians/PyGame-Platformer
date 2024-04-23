@@ -7,7 +7,10 @@ class Player:
 
     def __init__(self, x, y):
         #sprite stuff
-        self.sprite_sheet = pygame.image.load('./assets/Panda.png')
+        self.sprite_sheet_rainbow = pygame.image.load('assets/RainbowPanda.png')
+        self.sprite_sheet_red = pygame.image.load('assets/RedPandas.png')
+        self.sprite_sheet = pygame.image.load('assets/Panda.png')
+        self.sprite_sheet_app = pygame.image.load('assets/AppPanda.png')
         self.frame_width = 48
         self.frame_height = 48
         self.num_frames = 8
@@ -27,6 +30,10 @@ class Player:
         self.player_speed = 5
         self.player_jump = 15
         self.gravity = 1
+        #Panda Default Color
+        self.color = "white"
+
+
 
     def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
@@ -126,7 +133,15 @@ class Player:
         offset_x = (self.hitbox.width - self.frame_width) // 2
         offset_y = (self.hitbox.height - self.frame_height) // 2
         frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
-        frame_surface = self.sprite_sheet.subsurface(frame_rect)
+
+        if self.color == "white":
+            frame_surface = self.sprite_sheet.subsurface(frame_rect)
+        elif self.color == "red":
+            frame_surface = self.sprite_sheet_red.subsurface(frame_rect)
+        elif self.color == "rainbow":
+            frame_surface = self.sprite_sheet_rainbow.subsurface(frame_rect)
+        elif self.color == "yellow":
+            frame_surface = self.sprite_sheet_yellow.subsurface(frame_rect)
         screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
 
         #white outline of the player's hitbox
@@ -145,3 +160,7 @@ class Player:
         self.hitbox.x = 0
         self.hitbox.y = 0
         self.player_jump = 15
+
+    def set_color(self, color):
+        #Changes the color of the panda
+        self.color = color
