@@ -143,10 +143,8 @@ class Player:
         #get offset to recenter the players hitbox
         offset_x = (self.hitbox.width - self.frame_width) // 2
         offset_y = (self.hitbox.height - self.frame_height) // 2
-        
+
         frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
-        if self.gravity < 0:
-            frame_surface = pygame.transform.flip(frame_surface, False, True)
 
         if self.color == "white":
             frame_surface = self.sprite_sheet.subsurface(frame_rect)
@@ -156,6 +154,10 @@ class Player:
             frame_surface = self.sprite_sheet_rainbow.subsurface(frame_rect)
         elif self.color == "yellow":
             frame_surface = self.sprite_sheet_yellow.subsurface(frame_rect)
+        
+        if self.gravity < 0:
+            frame_surface = pygame.transform.flip(frame_surface, False, True)
+        
         screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
 
         #white outline of the player's hitbox
