@@ -196,8 +196,9 @@ def mainGameLoop(screen, clock, player, levels, background):
                 showLevelName = False
         for bamboo in levels.current_level.bamboo:
             if player.bambooCollisions(bamboo):
-                bamboo.here = True
-                player.upgrade_jump()
+                if bamboo.here == False:
+                    bamboo.here = True
+                    player.upgrade_jump()
         for surface in levels.current_level.surfaces:
             player.surfaceCollisions(surface)
         for moon in levels.current_level.moon:
