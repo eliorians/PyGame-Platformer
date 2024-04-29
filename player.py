@@ -7,7 +7,10 @@ class Player:
 
     def __init__(self, x, y):
         #sprite stuff
-        self.sprite_sheet = pygame.image.load('./assets/Panda.png')
+        self.sprite_sheet_rainbow = pygame.image.load('assets/RainbowPanda.png')
+        self.sprite_sheet_red = pygame.image.load('assets/RedPandas.png')
+        self.sprite_sheet = pygame.image.load('assets/Panda.png')
+        self.sprite_sheet_yellow = pygame.image.load('assets/YellowPandas.png')
         self.frame_width = 48
         self.frame_height = 48
         self.num_frames = 8
@@ -27,6 +30,10 @@ class Player:
         self.player_speed = 5
         self.player_jump = 15
         self.gravity = 1
+        #Panda Default Color
+        self.color = "white"
+
+
 
     def update(self, dt, screen_width, screen_height):
         self.update_animation(dt)
@@ -48,8 +55,12 @@ class Player:
     def jump(self):
         if not self.is_jumping:
             self.is_jumping = True
-            self.velocity_y = -self.player_jump
-
+            
+            if self.gravity < 0:
+                self.velocity_y = self.player_jump
+            else:
+                self.velocity_y = -self.player_jump
+                
     def apply_gravity(self):
         self.velocity_y += self.gravity
 
@@ -66,6 +77,8 @@ class Player:
         if self.hitbox.top < 0:
             self.hitbox.top = 0
             self.velocity_y = 0
+            if (self.gravity < 0):
+                self.is_jumping = False
         #bottom edge
         if self.hitbox.bottom > screen_height:
             self.hitbox.bottom = screen_height
@@ -97,6 +110,11 @@ class Player:
             return True
         return False
     
+    def moonCollisions(self, moon):
+        if self.hitbox.colliderect(moon.hitbox):
+            return True
+        return False
+    
     def surfaceCollisions(self, surface):
         if self.hitbox.colliderect(surface.hitbox):
             #jumping on top of the surface
@@ -125,8 +143,21 @@ class Player:
         #get offset to recenter the players hitbox
         offset_x = (self.hitbox.width - self.frame_width) // 2
         offset_y = (self.hitbox.height - self.frame_height) // 2
+
         frame_rect = pygame.Rect(self.current_frame * self.frame_width, 0, self.frame_width, self.frame_height)
-        frame_surface = self.sprite_sheet.subsurface(frame_rect)
+
+        if self.color == "white":
+            frame_surface = self.sprite_sheet.subsurface(frame_rect)
+        elif self.color == "red":
+            frame_surface = self.sprite_sheet_red.subsurface(frame_rect)
+        elif self.color == "rainbow":
+            frame_surface = self.sprite_sheet_rainbow.subsurface(frame_rect)
+        elif self.color == "yellow":
+            frame_surface = self.sprite_sheet_yellow.subsurface(frame_rect)
+        
+        if self.gravity < 0:
+            frame_surface = pygame.transform.flip(frame_surface, False, True)
+        
         screen.blit(frame_surface, (self.hitbox.left + offset_x, self.hitbox.top + offset_y))
 
         #white outline of the player's hitbox
@@ -145,3 +176,14 @@ class Player:
         self.hitbox.x = 0
         self.hitbox.y = 0
         self.player_jump = 15
+        self.gravity = 1
+
+    def flipGravity(self):
+        '''
+        Flip player gravity used by the moon object
+        '''
+        self.gravity = self.gravity * -1 
+
+    def set_color(self, color):
+        #Changes the color of the panda
+        self.color = color
