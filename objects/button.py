@@ -1,8 +1,8 @@
 import pygame
 
 class Button:
-    def __init__(self, x, y, image):
-        self.image = image
+    def __init__(self, x, y, image, scale=1):
+        self.image = pygame.transform.scale(image, (int(image.get_width() * scale), int(image.get_height() * scale)))
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.clicked = False
@@ -26,3 +26,4 @@ class Button:
         screen.blit(self.image, self.rect)
 
         return action
+

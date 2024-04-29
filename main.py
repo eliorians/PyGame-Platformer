@@ -47,10 +47,10 @@ def main():
 
     #Levels List & each Level Object
     levels = Levels()
-    # levels.add_level(level1)
-    # levels.add_level(level2)
-    # levels.add_level(level3)
-    # levels.add_level(level4)
+    levels.add_level(level1)
+    levels.add_level(level2)
+    levels.add_level(level3)
+    levels.add_level(level4)
     levels.add_level(level5)
 
     #Background Image (currently used in all levels...)
@@ -59,12 +59,29 @@ def main():
     #Menu Instantiation
     menu = Menu(screen)
 
+    #Variable to keep track if you are in the store
+    inStore = False
+
     #Main Menu Button Instantiation
     play_button_img = pygame.image.load("assets/playButt.png").convert_alpha()
     quit_button_img = pygame.image.load("assets/quitButt.png").convert_alpha()
+    store_button_img = pygame.image.load("assets/storeButt.png").convert_alpha()
+    # Load color button images and scale them
+    new_width = 200
+    new_height = 200
+    red_button_img = pygame.transform.scale(pygame.image.load("assets/redButton.png").convert_alpha(), (new_width, new_height))
+    rainbow_button_img = pygame.transform.scale(pygame.image.load("assets/rainbowButton.png").convert_alpha(), (new_width, new_height))
+    white_button_img = pygame.transform.scale(pygame.image.load("assets/whiteButton.png").convert_alpha(), (new_width, new_height))
+    yellow_button_img = pygame.transform.scale(pygame.image.load("assets/yelllowButton.png").convert_alpha(), (new_width, new_height))
 
     play_button = Button(530, 150, play_button_img)
-    quit_button = Button(530, 300, quit_button_img)
+    quit_button = Button(530, 425, quit_button_img)
+    store_button = Button(75, 200, store_button_img)
+   
+    red_button = Button(575, 350, red_button_img, 1)
+    rainbow_button = Button(575, 75, rainbow_button_img, 1)
+    white_button = Button(400, 350, white_button_img, 1)
+    yellow_button = Button(400, 75, yellow_button_img, 1)
 
     #Menu Music
     pygame.mixer.music.load("assets/sounds/noodle cove.wav")
@@ -73,18 +90,45 @@ def main():
     while True:
         #Load Menu and Buttons
         menu.draw()
-        play_button.draw(screen)
-        quit_button.draw(screen)
+        if not inStore:
+            play_button.draw(screen)
+            quit_button.draw(screen)
+            store_button.draw(screen)
+        else:  # You are in the store
+            red_button.draw(screen)
+            rainbow_button.draw(screen)  # draw the rainbow button in the store
+            white_button.draw(screen)  # draw the white button in the store
+            yellow_button.draw(screen)  # draw the yellow button in the store
         pygame.display.update()
 
         #Menu Controls
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-            elif play_button.draw(screen):
-                mainGameLoop(screen, clock, player, levels, background)
-            elif quit_button.draw(screen):
-                pygame.quit()
+            elif inStore:
+                if red_button.draw(screen):  # if red button is clicked
+                    player.set_color('red')
+                    inStore = False  # go back to the main menu
+                elif rainbow_button.draw(screen):  # if rainbow button is clicked
+                    player.set_color('rainbow')
+                    inStore = False  # go back to the main menu
+                elif white_button.draw(screen):  # if white button is clicked
+                    player.set_color('white')
+                    inStore = False  # go back to the main menu
+                elif yellow_button.draw(screen):  # if yellow button is clicked
+                    player.set_color('yellow')
+                    inStore = False  # go back to the main menu
+            else:
+                if play_button.draw(screen):
+                    inStore = False
+                    mainGameLoop(screen, clock, player, levels, background)
+                elif quit_button.draw(screen):
+                    pygame.quit()
+                elif store_button.draw(screen):
+                    inStore = True
+                    menu.draw()
+                    pygame.display.update()
+
         
 def mainGameLoop(screen, clock, player, levels, background):
     '''
