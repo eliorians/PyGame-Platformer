@@ -9,6 +9,8 @@ class Enemy:
         self.patrol_point2 = (end_x, end_y)
         self.velocity = velocity
         self.horizontal = horizontal
+        self.image = pygame.image.load("assets/jiggly.png")
+        self.image = pygame.transform.scale(self.image, (40, 30))
 
     def update(self):
         if self.horizontal:
@@ -31,5 +33,5 @@ class Enemy:
                 self.velocity *= -1
 
     def draw(self, screen):
-        pygame.draw.rect(screen, black, self.hitbox)
+        screen.blit(self.image, self.hitbox)
 

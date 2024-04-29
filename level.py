@@ -177,7 +177,6 @@ level4 = Level(
         Info(info="Avoid the spikes, they will hurt you!", x=50, y=100, width=100, height=125)
     ]
 )
-
 level5 = Level(
    surfaces=[
         Surface(x=0, width=SCREEN_WIDTH, y=SCREEN_HEIGHT*.95, height=SCREEN_HEIGHT),
@@ -199,4 +198,7 @@ level5 = Level(
         Moon(x=200, y=500),
         Moon(x=650, y =0),
     ],
+    info=[
+        Info(info="Pick up the potion to flip gravity!", x=50, y=100, width=75, height=100)
+    ]
 )
