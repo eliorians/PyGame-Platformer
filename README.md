@@ -1,5 +1,7 @@
 # PyGame-Platformer
-Creating a 2D Mario-like game using PyGame
+S-STEM Project #3: Continuing to build off the previous two python projects, this time creating a large-scale python game to show off the abilities of object-orientated programming.
+
+Creating a 2D Mario-like game using PyGame.
 
 How to run: python ./main.py
 
